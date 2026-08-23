@@ -3,27 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>TESTE 124</title>
 
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            background:
-                linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.78)),
-                radial-gradient(circle at top, #333, #050505 70%);
-            color: white;
+            background: #080808;
+            color: #fff;
         }
 
         button,
-        input {
+        input,
+        textarea {
             font: inherit;
         }
 
@@ -34,7 +32,7 @@
         .page {
             display: none;
             min-height: 100vh;
-            padding: 90px 20px 40px;
+            padding: 80px 20px 50px;
         }
 
         .page.active {
@@ -43,212 +41,280 @@
             justify-content: center;
         }
 
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+        }
+
         .card {
             width: 100%;
-            max-width: 430px;
-            background: rgba(20,20,20,.96);
-            border: 1px solid #444;
-            border-radius: 18px;
+            max-width: 450px;
+            margin: auto;
             padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,.5);
+            border: 1px solid #333;
+            border-radius: 18px;
+            background: #151515;
+            box-shadow: 0 15px 45px rgba(0,0,0,.45);
         }
 
-        .card h1,
-        .card h2 {
+        .wide-card {
+            max-width: 900px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin-bottom: 15px;
+        }
+
+        .center {
             text-align: center;
-            margin-bottom: 20px;
         }
 
-        .input {
+        .muted {
+            color: #999;
+        }
+
+        .input,
+        .textarea {
+            display: block;
             width: 100%;
+            margin: 9px 0;
             padding: 14px;
-            margin: 7px 0;
-            border: 1px solid #555;
+            border: 1px solid #444;
             border-radius: 10px;
-            background: #111;
-            color: white;
             outline: none;
+            background: #0c0c0c;
+            color: #fff;
         }
 
-        .input:focus {
-            border-color: white;
+        .textarea {
+            min-height: 110px;
+            resize: vertical;
         }
 
-        .button-full {
+        .input:focus,
+        .textarea:focus {
+            border-color: #888;
+        }
+
+        .btn {
             width: 100%;
-            padding: 14px;
             margin-top: 10px;
+            padding: 14px;
             border: 0;
             border-radius: 10px;
-            background: white;
-            color: black;
+            background: #fff;
+            color: #000;
             font-weight: bold;
         }
 
-        .button-full:hover {
+        .btn:hover {
             opacity: .85;
         }
 
-        .secondary {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border: 1px solid #555;
-            border-radius: 10px;
-            background: transparent;
-            color: white;
+        .btn-secondary {
+            background: #222;
+            color: #fff;
+            border: 1px solid #444;
         }
 
-        .secondary:hover {
-            background: #222;
+        .btn-danger {
+            background: #7f1d1d;
+            color: #fff;
+        }
+
+        .btn-small {
+            width: auto;
+            padding: 9px 12px;
+            margin: 0;
         }
 
         .message {
             min-height: 24px;
-            text-align: center;
             margin-top: 12px;
+            text-align: center;
         }
 
-        .menu-button {
+        /* MENU */
+
+        #menuButton {
             position: fixed;
-            z-index: 1000;
-            top: 18px;
-            left: 18px;
+            top: 15px;
+            left: 15px;
+            z-index: 2000;
             width: 48px;
             height: 48px;
-            border: 1px solid #555;
+            border: 1px solid #444;
             border-radius: 12px;
-            background: rgba(10,10,10,.92);
-            color: white;
+            background: #111;
+            color: #fff;
             font-size: 24px;
         }
 
-        .side-menu {
+        #sideMenu {
             position: fixed;
-            z-index: 999;
             top: 0;
             left: 0;
-            width: 30%;
-            min-width: 270px;
-            max-width: 380px;
+            z-index: 1999;
+            width: 300px;
+            max-width: 85%;
             height: 100vh;
-            padding: 80px 20px 20px;
-            background: #101010;
-            border-right: 1px solid #444;
-            transform: translateX(-110%);
-            transition: .25s;
+            padding: 75px 20px 20px;
+            border-right: 1px solid #333;
+            background: #111;
+            transform: translateX(-105%);
+            transition: transform .25s ease;
         }
 
-        .side-menu.open {
+        #sideMenu.open {
             transform: translateX(0);
         }
 
-        .close-menu {
+        #closeMenu {
             position: absolute;
-            top: 18px;
-            right: 18px;
+            top: 17px;
+            right: 17px;
             border: 0;
             background: transparent;
-            color: white;
-            font-size: 25px;
+            color: #fff;
+            font-size: 28px;
         }
 
         .menu-title {
+            margin-bottom: 25px;
             font-size: 22px;
             font-weight: bold;
-            margin-bottom: 25px;
         }
 
-        .menu-section {
-            color: #aaa;
-            font-size: 13px;
+        .menu-label {
             margin: 20px 0 8px;
+            color: #888;
+            font-size: 12px;
             text-transform: uppercase;
         }
 
         .menu-link {
             display: block;
             width: 100%;
-            text-align: left;
-            padding: 13px;
             margin: 7px 0;
-            border: 0;
+            padding: 13px;
+            border: 1px solid #333;
             border-radius: 10px;
-            background: #1d1d1d;
-            color: white;
+            background: #1b1b1b;
+            color: #fff;
+            text-align: left;
         }
 
         .menu-link:hover {
             background: #292929;
         }
 
+        /* HOME */
+
         .hero {
             text-align: center;
-            max-width: 700px;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 10vw, 80px);
+            font-size: clamp(45px, 10vw, 85px);
             letter-spacing: 3px;
         }
 
         .hero p {
-            margin-top: 15px;
-            color: #bbb;
+            color: #aaa;
             font-size: 18px;
         }
 
-        .manager-panel {
+        /* MANAGER */
+
+        .dashboard {
             width: 100%;
-            max-width: 850px;
+            max-width: 950px;
         }
 
-        .panel-grid {
+        .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
-        .panel-box {
-            padding: 20px;
-            background: #171717;
+        .stat {
+            padding: 22px;
             border: 1px solid #333;
-            border-radius: 14px;
+            border-radius: 15px;
+            background: #151515;
         }
 
-        .panel-box h3 {
-            margin-bottom: 10px;
-        }
-
-        .big-number {
+        .stat-number {
+            margin-top: 8px;
             font-size: 32px;
             font-weight: bold;
         }
 
-        .member-success {
-            text-align: center;
+        .members-list {
+            margin-top: 15px;
         }
 
-        .member-success h1 {
-            font-size: 55px;
+        .member-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 10px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 12px;
+            background: #101010;
         }
+
+        .member-info {
+            min-width: 0;
+        }
+
+        .member-name {
+            font-weight: bold;
+        }
+
+        .member-user {
+            margin-top: 4px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* SUCCESS */
+
+        .success-icon {
+            margin-bottom: 15px;
+            font-size: 65px;
+        }
+
+        /* VERSION */
 
         .site-version {
             position: fixed;
             right: 12px;
             bottom: 10px;
-            color: #888;
+            z-index: 1500;
+            color: #777;
             font-size: 12px;
-            opacity: .8;
-            z-index: 1000;
             pointer-events: none;
         }
 
-        @media (max-width: 700px) {
-            .side-menu {
-                width: 80%;
-                min-width: 0;
+        @media (max-width: 600px) {
+            .card {
+                padding: 22px;
+            }
+
+            .member-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .btn-small {
+                width: 100%;
             }
         }
     </style>
@@ -256,337 +322,348 @@
 
 <body>
 
-    <!-- BOTÃO DO MENU -->
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Abrir menu">
-        ☰
-    </button>
+    <button id="menuButton" type="button">☰</button>
 
+    <nav id="sideMenu">
+        <button id="closeMenu" type="button">×</button>
 
-    <!-- MENU LATERAL -->
-    <nav class="side-menu" id="sideMenu">
+        <div class="menu-title">OLDACK SYSTEM</div>
 
-        <button
-            class="close-menu"
-            id="closeMenu"
-            aria-label="Fechar menu">
-            ×
-        </button>
+        <div class="menu-label">Principal</div>
 
-        <div class="menu-title">
-            TESTE 124
-        </div>
-
-        <div class="menu-section">
-            Manager
-        </div>
-
-        <button
-            class="menu-link"
-            onclick="showPage('managerLogin')">
-            🔐 Entrar Manager
-        </button>
-
-        <div class="menu-section">
-            Membro
-        </div>
-
-        <button
-            class="menu-link"
-            onclick="showPage('memberRegister')">
-            📝 Cadastrar membro
-        </button>
-
-        <button
-            class="menu-link"
-            onclick="showPage('memberLogin')">
-            👤 Entrar membro
-        </button>
-
-        <button
-            class="menu-link"
-            onclick="showPage('home')">
+        <button class="menu-link" type="button" data-page="home">
             🏠 Início
         </button>
 
+        <div class="menu-label">Membro</div>
+
+        <button class="menu-link" type="button" data-page="memberRegister">
+            📝 Cadastro
+        </button>
+
+        <button class="menu-link" type="button" data-page="memberLogin">
+            👤 Login do membro
+        </button>
+
+        <div class="menu-label">Manager</div>
+
+        <button class="menu-link" type="button" data-page="managerLogin">
+            🔐 Login Manager
+        </button>
     </nav>
 
 
-    <!-- PÁGINA INICIAL -->
-    <section class="page active" id="home">
+    <!-- HOME -->
 
+    <section id="home" class="page active">
         <div class="hero">
-
             <h1>TESTE 124</h1>
-
-            <p>
-                Bem-vindo ao sistema.
-            </p>
-
+            <p>Sistema online</p>
         </div>
-
     </section>
 
 
-    <!-- CADASTRO DE MEMBRO -->
-    <section class="page" id="memberRegister">
+    <!-- CADASTRO -->
 
+    <section id="memberRegister" class="page">
         <div class="card">
 
-            <h2>📝 Cadastrar membro</h2>
+            <h2 class="center">📝 Cadastro de membro</h2>
 
             <input
-                class="input"
                 id="registerName"
+                class="input"
                 type="text"
+                maxlength="80"
                 placeholder="Nome">
 
             <input
-                class="input"
                 id="registerUser"
+                class="input"
                 type="text"
+                maxlength="40"
                 placeholder="Login">
 
             <input
-                class="input"
                 id="registerPass"
+                class="input"
                 type="password"
+                maxlength="100"
                 placeholder="Senha">
 
             <button
-                class="button-full"
-                onclick="registerMember()">
+                id="registerButton"
+                class="btn"
+                type="button">
                 Cadastrar
             </button>
 
             <button
-                class="secondary"
-                onclick="showPage('memberLogin')">
+                class="btn btn-secondary"
+                type="button"
+                data-page="memberLogin">
                 Já tenho uma conta
             </button>
 
-            <div
-                class="message"
-                id="registerMessage">
-            </div>
+            <div id="registerMessage" class="message"></div>
 
         </div>
-
     </section>
 
 
-    <!-- LOGIN DE MEMBRO -->
-    <section class="page" id="memberLogin">
+    <!-- LOGIN MEMBRO -->
 
+    <section id="memberLogin" class="page">
         <div class="card">
 
-            <h2>👤 Entrar como membro</h2>
+            <h2 class="center">👤 Login do membro</h2>
 
             <input
-                class="input"
                 id="memberUser"
+                class="input"
                 type="text"
                 placeholder="Login">
 
             <input
-                class="input"
                 id="memberPass"
+                class="input"
                 type="password"
                 placeholder="Senha">
 
             <button
-                class="button-full"
-                onclick="loginMember()">
+                id="memberLoginButton"
+                class="btn"
+                type="button">
                 Entrar
             </button>
 
             <button
-                class="secondary"
-                onclick="showPage('memberRegister')">
+                class="btn btn-secondary"
+                type="button"
+                data-page="memberRegister">
                 Criar conta
             </button>
 
-            <button
-                class="secondary"
-                onclick="showPage('home')">
-                Voltar
-            </button>
-
-            <div
-                class="message"
-                id="memberMessage">
-            </div>
+            <div id="memberMessage" class="message"></div>
 
         </div>
-
     </section>
 
 
-    <!-- PÁGINA APÓS LOGIN DO MEMBRO -->
-    <section class="page" id="memberSuccess">
+    <!-- SUCESSO MEMBRO -->
 
-        <div class="card member-success">
+    <section id="memberSuccess" class="page">
+        <div class="card center">
 
-            <h1>✅</h1>
+            <div class="success-icon">✅</div>
 
             <h2>Teste concluído!</h2>
 
-            <p style="color:#aaa; margin-bottom:15px;">
+            <p class="muted">
                 Login realizado com sucesso.
             </p>
 
             <button
-                class="button-full"
-                onclick="showPage('home')">
-                Voltar para o início
+                id="memberLogoutButton"
+                class="btn btn-secondary"
+                type="button">
+                Sair
+            </button>
+
+            <button
+                class="btn"
+                type="button"
+                data-page="home">
+                Início
             </button>
 
         </div>
-
     </section>
 
 
-    <!-- LOGIN DO MANAGER -->
-    <section class="page" id="managerLogin">
+    <!-- LOGIN MANAGER -->
 
+    <section id="managerLogin" class="page">
         <div class="card">
 
-            <h2>🔐 Entrar Manager</h2>
+            <h2 class="center">🔐 Login Manager</h2>
 
             <input
-                class="input"
                 id="managerUser"
+                class="input"
                 type="text"
+                autocomplete="username"
                 placeholder="Login">
 
             <input
-                class="input"
                 id="managerPass"
+                class="input"
                 type="password"
+                autocomplete="current-password"
                 placeholder="Senha">
 
             <button
-                class="button-full"
-                onclick="loginManager()">
+                id="managerLoginButton"
+                class="btn"
+                type="button">
                 Entrar
             </button>
 
-            <button
-                class="secondary"
-                onclick="showPage('home')">
-                Voltar
-            </button>
-
-            <div
-                class="message"
-                id="managerMessage">
-            </div>
+            <div id="managerMessage" class="message"></div>
 
         </div>
-
     </section>
 
 
-    <!-- PAINEL DO MANAGER -->
-    <section class="page" id="managerPanel">
+    <!-- PAINEL MANAGER -->
 
-        <div class="manager-panel">
+    <section id="managerPanel" class="page">
+        <div class="dashboard">
 
-            <div class="card">
+            <div class="card wide-card">
 
                 <h2>⚙️ Painel do Manager</h2>
 
-                <p style="text-align:center;color:#aaa;">
-                    Área exclusiva do Manager
+                <p class="muted">
+                    Área administrativa
                 </p>
 
             </div>
 
 
-            <div class="panel-grid">
+            <div class="stats">
 
-                <div class="panel-box">
-
-                    <h3>👥 Membros</h3>
+                <div class="stat">
+                    <div>👥 Membros</div>
 
                     <div
-                        class="big-number"
-                        id="memberCount">
+                        id="memberCount"
+                        class="stat-number">
                         0
                     </div>
-
                 </div>
 
+                <div class="stat">
+                    <div>🌐 Sistema</div>
 
-                <div class="panel-box">
-
-                    <h3>🌐 Site</h3>
-
-                    <p>
-                        TESTE 124 online
-                    </p>
-
+                    <div class="stat-number">
+                        ONLINE
+                    </div>
                 </div>
 
+                <div class="stat">
+                    <div>📌 Versão</div>
 
-                <div class="panel-box">
-
-                    <h3>📌 Versão</h3>
-
-                    <p>
+                    <div class="stat-number">
                         v2.0
-                    </p>
-
+                    </div>
                 </div>
 
             </div>
 
 
-            <div
-                class="card"
-                style="margin-top:15px;">
+            <!-- CONFIGURAÇÃO DO SITE -->
 
-                <h3>⚙️ Controles</h3>
+            <div class="card wide-card">
+
+                <h3>📝 Configuração do site</h3>
+
+                <input
+                    id="siteTitle"
+                    class="input"
+                    type="text"
+                    maxlength="120"
+                    placeholder="Título">
+
+                <textarea
+                    id="siteDescription"
+                    class="textarea"
+                    maxlength="500"
+                    placeholder="Descrição"></textarea>
 
                 <button
-                    class="button-full"
-                    onclick="loadMembers()">
-                    🔄 Atualizar membros
-                </button>
-
-                <button
-                    class="secondary"
-                    onclick="changeTitle()">
-                    📝 Alterar título local
-                </button>
-
-                <button
-                    class="secondary"
-                    onclick="logoutManager()">
-                    🚪 Sair do Manager
+                    id="saveSiteButton"
+                    class="btn"
+                    type="button">
+                    Salvar alterações
                 </button>
 
                 <div
-                    class="message"
-                    id="managerPanelMessage">
+                    id="siteMessage"
+                    class="message">
                 </div>
+
+            </div>
+
+
+            <!-- MEMBROS -->
+
+            <div class="card wide-card" style="margin-top:15px;">
+
+                <h3>👥 Membros cadastrados</h3>
+
+                <button
+                    id="refreshMembersButton"
+                    class="btn btn-secondary"
+                    type="button">
+                    🔄 Atualizar lista
+                </button>
+
+                <div
+                    id="membersList"
+                    class="members-list">
+                </div>
+
+                <div
+                    id="membersMessage"
+                    class="message">
+                </div>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <div class="card wide-card" style="margin-top:15px;">
+
+                <button
+                    id="managerLogoutButton"
+                    class="btn btn-danger"
+                    type="button">
+                    🚪 Sair do Manager
+                </button>
 
             </div>
 
         </div>
-
     </section>
 
 
-    <!-- VERSÃO DO SITE -->
-    <div class="site-version">
-        v2.0
-    </div>
+    <div class="site-version">v2.0</div>
 
 
     <script>
+        "use strict";
+
+
+        /* =========================
+           ELEMENTOS
+        ========================= */
+
+        const $ = id => document.getElementById(id);
+
+
+        /* =========================
+           MENSAGENS
+        ========================= */
+
+        function message(element, text, color) {
+            if (!element) return;
+
+            element.textContent = text;
+            element.style.color = color || "#fff";
+        }
+
 
         /* =========================
            NAVEGAÇÃO
@@ -601,20 +678,17 @@
                 page.classList.remove("active");
             });
 
-            const selected =
-                document.getElementById(pageId);
+            const page = $(pageId);
 
-            if (!selected) {
-
+            if (!page) {
                 console.error(
                     "Página não encontrada:",
                     pageId
                 );
-
                 return;
             }
 
-            selected.classList.add("active");
+            page.classList.add("active");
 
             closeMenu();
 
@@ -622,6 +696,10 @@
                 top: 0,
                 behavior: "smooth"
             });
+
+            if (pageId === "managerPanel") {
+                loadManagerData();
+            }
         }
 
 
@@ -630,296 +708,216 @@
         ========================= */
 
         function openMenu() {
-
-            const menu =
-                document.getElementById("sideMenu");
-
-            if (menu) {
-                menu.classList.add("open");
-            }
+            $("sideMenu").classList.add("open");
         }
 
-
         function closeMenu() {
-
-            const menu =
-                document.getElementById("sideMenu");
-
-            if (menu) {
-                menu.classList.remove("open");
-            }
+            $("sideMenu").classList.remove("open");
         }
 
 
         /* =========================
-           CADASTRO DE MEMBRO
+           API JSON
+        ========================= */
+
+        async function api(url, options = {}) {
+
+            const response = await fetch(url, {
+                credentials: "include",
+                ...options,
+                headers: {
+                    "Content-Type": "application/json",
+                    ...(options.headers || {})
+                }
+            });
+
+            let data = {};
+
+            try {
+                data = await response.json();
+            } catch {
+                data = {};
+            }
+
+            if (!response.ok) {
+                throw new Error(
+                    data.message ||
+                    `Erro HTTP ${response.status}`
+                );
+            }
+
+            return data;
+        }
+
+
+        /* =========================
+           CADASTRO
         ========================= */
 
         async function registerMember() {
 
             const name =
-                document
-                .getElementById("registerName")
-                .value
-                .trim();
+                $("registerName").value.trim();
 
             const user =
-                document
-                .getElementById("registerUser")
-                .value
-                .trim();
+                $("registerUser").value.trim();
 
             const pass =
-                document
-                .getElementById("registerPass")
-                .value;
+                $("registerPass").value;
 
             const msg =
-                document
-                .getElementById("registerMessage");
+                $("registerMessage");
 
 
             if (!name || !user || !pass) {
 
-                msg.textContent =
-                    "⚠️ Preencha todos os campos.";
-
-                msg.style.color =
-                    "#f87171";
+                message(
+                    msg,
+                    "⚠️ Preencha todos os campos.",
+                    "#f87171"
+                );
 
                 return;
             }
 
 
+            message(
+                msg,
+                "⏳ Cadastrando...",
+                "#facc15"
+            );
+
+
             try {
 
-                const response =
-                    await fetch(
-                        "/api/member/register",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            credentials: "include",
-
-                            body: JSON.stringify({
-                                name,
-                                user,
-                                pass
-                            })
-                        }
-                    );
+                await api(
+                    "/api/member/register",
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            name,
+                            user,
+                            pass
+                        })
+                    }
+                );
 
 
-                const data =
-                    await response.json();
+                message(
+                    msg,
+                    "✅ Cadastro realizado!",
+                    "#4ade80"
+                );
 
 
-                if (!response.ok) {
-
-                    msg.textContent =
-                        data.message ||
-                        "❌ Não foi possível cadastrar.";
-
-                    msg.style.color =
-                        "#f87171";
-
-                    return;
-                }
+                $("registerName").value = "";
+                $("registerUser").value = "";
+                $("registerPass").value = "";
 
 
-                msg.textContent =
-                    "✅ Cadastro realizado!";
-
-                msg.style.color =
-                    "#4ade80";
-
-
-                document
-                    .getElementById("registerName")
-                    .value = "";
-
-                document
-                    .getElementById("registerUser")
-                    .value = "";
-
-                document
-                    .getElementById("registerPass")
-                    .value = "";
-
-
-                setTimeout(() => {
-
-                    showPage("memberLogin");
-
-                }, 1000);
+                setTimeout(
+                    () => showPage("memberLogin"),
+                    900
+                );
 
 
             } catch (error) {
 
                 console.error(error);
 
-                msg.textContent =
-                    "❌ Erro ao conectar ao servidor.";
-
-                msg.style.color =
-                    "#f87171";
+                message(
+                    msg,
+                    "❌ " + error.message,
+                    "#f87171"
+                );
             }
         }
 
 
         /* =========================
-           LOGIN DE MEMBRO
+           LOGIN MEMBRO
         ========================= */
 
         async function loginMember() {
 
             const user =
-                document
-                .getElementById("memberUser")
-                .value
-                .trim();
+                $("memberUser").value.trim();
 
             const pass =
-                document
-                .getElementById("memberPass")
-                .value;
+                $("memberPass").value;
 
             const msg =
-                document
-                .getElementById("memberMessage");
+                $("memberMessage");
 
 
             if (!user || !pass) {
 
-                msg.textContent =
-                    "⚠️ Preencha login e senha.";
-
-                msg.style.color =
-                    "#f87171";
+                message(
+                    msg,
+                    "⚠️ Informe login e senha.",
+                    "#f87171"
+                );
 
                 return;
             }
 
 
+            message(
+                msg,
+                "⏳ Entrando...",
+                "#facc15"
+            );
+
+
             try {
 
-                const response =
-                    await fetch(
-                        "/api/member/login",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            credentials: "include",
-
-                            body: JSON.stringify({
-                                user,
-                                pass
-                            })
-                        }
-                    );
+                await api(
+                    "/api/member/login",
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            user,
+                            pass
+                        })
+                    }
+                );
 
 
-                const data =
-                    await response.json();
+                message(
+                    msg,
+                    "✅ Login realizado!",
+                    "#4ade80"
+                );
 
 
-                if (!response.ok) {
-
-                    msg.textContent =
-                        data.message ||
-                        "❌ Usuário ou senha incorretos.";
-
-                    msg.style.color =
-                        "#f87171";
-
-                    return;
-                }
+                $("memberPass").value = "";
 
 
-                msg.textContent =
-                    "✅ Login realizado!";
-
-                msg.style.color =
-                    "#4ade80";
-
-
-                setTimeout(() => {
-
-                    showPage("memberSuccess");
-
-                }, 500);
+                setTimeout(
+                    () => showPage("memberSuccess"),
+                    500
+                );
 
 
             } catch (error) {
 
                 console.error(error);
 
-                msg.textContent =
-                    "❌ Erro ao conectar ao servidor.";
-
-                msg.style.color =
-                    "#f87171";
+                message(
+                    msg,
+                    "❌ " + error.message,
+                    "#f87171"
+                );
             }
         }
 
 
         /* =========================
-           LOGIN DO MANAGER
+           LOGOUT MEMBRO
         ========================= */
 
-        async function loginManager() {
-
-            const user =
-                document
-                .getElementById("managerUser")
-                .value
-                .trim();
-
-            const pass =
-                document
-                .getElementById("managerPass")
-                .value;
-
-            const msg =
-                document
-                .getElementById("managerMessage");
-
-
-            if (!user || !pass) {
-
-                msg.textContent =
-                    "⚠️ Preencha login e senha.";
-
-                msg.style.color =
-                    "#f87171";
-
-                return;
-            }
-
+        async function logoutMember() {
 
             try {
 
-                const response =
-                    await fetch(
-                        "/api/manager/login",
-                        {
-                            method: "POST",
-
-                            headers: {
-                                "Content-Type":
-                                    "application/json"
-                            },
-
-                            credentials: "include",
-
-                            body: JSON.stringify(
+              
