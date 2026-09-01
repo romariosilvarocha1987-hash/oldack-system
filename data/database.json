@@ -6,6 +6,41 @@
       "user": "ben10",
       "password": "$2b$12$fcdQFvJ5IYK40QcLr6elc.qZcW88qwUIjle4CaMoj6JCTWdrImLIG",
       "createdAt": "2026-08-22T14:00:00.958Z"
+    },
+    {
+      "id": "1788299355221",
+      "name": "Oi",
+      "user": "kkkkk",
+      "password": "$2b$12$LxtXWKh.0f.EMKqQ2w0HieF6OoQF77u42YDj0hT3xOBXmEx/J66aa",
+      "createdAt": "2026-09-01T21:49:15.221Z"
+    },
+    {
+      "id": "1788300170571",
+      "name": "Dhhddhdh",
+      "user": "kkkkkkkk",
+      "password": "$2b$12$QOQtFcxLkH.zR9tOTj3Ul.fOx9R8A0llVrfotR/AafGZ/OlzErv5y",
+      "createdAt": "2026-09-01T22:02:50.571Z"
+    },
+    {
+      "id": "1788301476454",
+      "name": "Soares",
+      "user": "kkk",
+      "password": "$2b$12$PMGFEy3ILLjdBp5Icgwmqu2C.d60F92HH4htZ7gJduMl1MUOnQp32",
+      "createdAt": "2026-09-01T22:24:36.454Z"
+    },
+    {
+      "id": "1788302826970",
+      "name": "Lucas Rafael",
+      "user": "ben19lll",
+      "password": "$2b$12$eQROxzsfMUaREpar7aNcGO8jyqrAi9.NrcNlR4w3kJ/lOewuv2z9a",
+      "createdAt": "2026-09-01T22:47:06.970Z"
+    },
+    {
+      "id": "1788303674102",
+      "name": "Lucas Rafael",
+      "user": "ben20",
+      "password": "$2b$12$oo0YQJ7X7FKdURZ17ZA30uLFC.jxT.g6S1AkdUYuWvK8twipgUOvC",
+      "createdAt": "2026-09-01T23:01:14.102Z"
     }
   ],
   "site": {

@@ -1,1125 +1,2019 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OLDACK SYSTEM</title><style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    font-family: Arial, sans-serif;
-    background: #0b0f14;
-    color: white;
-    min-height: 100vh;
-}
+    <meta charset="UTF-8">
 
-button,
-input {
-    font: inherit;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-button {
-    cursor: pointer;
-}
+    <title>perfumes❤️Tâmara</title>
 
-header {
-    height: 64px;
-    background: #111821;
-    border-bottom: 1px solid #26313d;
-    display: flex;
-    align-items: center;
-    padding: 0 18px;
-    gap: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
 
-.menu-btn {
-    background: none;
-    border: 0;
-    color: white;
-    font-size: 28px;
-    width: 42px;
-}
+    <style>
 
-.logo {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-main {
-    max-width: 900px;
-    margin: auto;
-    padding: 35px 18px;
-}
-
-.page {
-    display: none;
-}
-
-.page.active {
-    display: block;
-}
-
-.card {
-    background: #121a23;
-    border: 1px solid #26313d;
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 30px #0004;
-}
-
-h1 {
-    font-size: 34px;
-    margin-bottom: 12px;
-}
-
-h2 {
-    margin-bottom: 14px;
-}
-
-p {
-    color: #b9c3ce;
-    line-height: 1.6;
-    margin-bottom: 16px;
-}
-
-.btn {
-    border: 0;
-    border-radius: 10px;
-    padding: 12px 16px;
-    background: #2f80ed;
-    color: white;
-    font-weight: 700;
-    margin: 5px 3px;
-}
-
-.btn.secondary {
-    background: #26313d;
-}
-
-.btn.danger {
-    background: #c0392b;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    margin: 7px 0 12px;
-    background: #0b1118;
-    border: 1px solid #33404d;
-    border-radius: 9px;
-    color: white;
-    outline: none;
-}
-
-input:focus {
-    border-color: #2f80ed;
-}
-
-.msg {
-    padding: 10px;
-    border-radius: 9px;
-    margin: 10px 0;
-    display: none;
-}
-
-.msg.show {
-    display: block;
-    background: #182b20;
-    color: #9ff0b1;
-}
-
-.msg.error {
-    display: block;
-    background: #351b1b;
-    color: #ffaaa3;
-}
-
-.side {
-    position: fixed;
-    left: -310px;
-    top: 0;
-    width: 290px;
-    height: 100%;
-    background: #101720;
-    border-right: 1px solid #293541;
-    z-index: 20;
-    padding: 20px;
-    transition: .25s;
-}
-
-.side.open {
-    left: 0;
-}
-
-.close {
-    float: right;
-    background: none;
-    border: 0;
-    color: white;
-    font-size: 25px;
-}
-
-.side h2 {
-    margin-top: 30px;
-}
-
-.nav {
-    display: block;
-    width: 100%;
-    text-align: left;
-    padding: 13px;
-    margin: 7px 0;
-    background: #18222d;
-    border: 0;
-    color: white;
-    border-radius: 9px;
-}
-
-.overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: #0008;
-    z-index: 15;
-}
-
-.overlay.show {
-    display: block;
-}
-
-.member-item {
-    background: #0d141c;
-    border: 1px solid #27333f;
-    border-radius: 10px;
-    padding: 12px;
-    margin: 8px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.small {
-    font-size: 13px;
-    color: #8e9aa7;
-}
-
-.badge {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 20px;
-    background: #1d3654;
-    color: #8fc2ff;
-}
-
-.version {
-    position: fixed;
-    right: 10px;
-    bottom: 8px;
-    color: #66727e;
-    font-size: 12px;
-}
-
-.hidden {
-    display: none !important;
-}
-
-@media(max-width:600px) {
-    h1 {
-        font-size: 28px;
-    }
-
-    .member-item {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-}
-</style></head><body><header>
-    <button class="menu-btn" id="menuBtn" type="button">☰</button>
-    <div class="logo" id="siteTitle">OLDACK SYSTEM</div>
-</header><div class="overlay" id="overlay"></div><aside class="side" id="side"><button class="close" id="closeMenu" type="button">×</button>
-
-<h2>Menu</h2>
-
-<button class="nav" data-page="home" type="button">🏠 Início</button>
-
-<button class="nav" data-page="register" type="button">
-    📝 Cadastrar membro
-</button>
-
-<button class="nav" data-page="memberLogin" type="button">
-    👤 Entrar como membro
-</button>
-
-<button class="nav" data-page="managerLogin" type="button">
-    🔐 Entrar como manager
-</button>
-
-<button class="nav hidden" id="managerNav" data-page="manager" type="button">
-    ⚙️ Painel do manager
-</button>
-
-</aside><main><section id="home" class="page active"><div class="card">
-
-    <h1 id="homeTitle">OLDACK SYSTEM</h1>
-
-    <p id="homeDescription">
-        Sistema de membros e gerenciamento.
-    </p>
-
-    <button class="btn" data-page="register" type="button">
-        Cadastrar membro
-    </button>
-
-    <button class="btn secondary" data-page="memberLogin" type="button">
-        Entrar
-    </button>
-
-</div>
-
-</section><section id="register" class="page"><div class="card">
-
-    <h2>Cadastrar membro</h2>
-
-    <form id="registerForm">
-
-        <input id="regName"
-               placeholder="Nome"
-               autocomplete="name"
-               required>
-
-        <input id="regUser"
-               placeholder="Usuário"
-               autocomplete="username"
-               required>
-
-        <input id="regPass"
-               type="password"
-               placeholder="Senha"
-               autocomplete="new-password"
-               required>
-
-        <button class="btn" type="submit">
-            Cadastrar
-        </button>
-
-    </form>
-
-    <div id="registerMsg" class="msg"></div>
-
-</div>
-
-</section><section id="memberLogin" class="page"><div class="card">
-
-    <h2>Entrar como membro</h2>
-
-    <form id="memberLoginForm">
-
-        <input id="loginUser"
-               placeholder="Usuário"
-               autocomplete="username"
-               required>
-
-        <input id="loginPass"
-               type="password"
-               placeholder="Senha"
-               autocomplete="current-password"
-               required>
-
-        <button class="btn" type="submit">
-            Entrar
-        </button>
-
-    </form>
-
-    <div id="memberLoginMsg" class="msg"></div>
-
-</div>
-
-</section><section id="memberSuccess" class="page"><div class="card">
-
-    <h1>Teste concluído ✅</h1>
-
-    <p id="welcomeMember">
-        Você entrou como membro.
-    </p>
-
-    <button class="btn secondary"
-            id="memberLogout"
-            type="button">
-        Sair
-    </button>
-
-</div>
-
-</section><section id="managerLogin" class="page"><div class="card">
-
-    <h2>Login do manager</h2>
-
-    <form id="managerLoginForm">
-
-        <input id="managerUser"
-               placeholder="Usuário do manager"
-               autocomplete="username"
-               required>
-
-        <input id="managerPass"
-               type="password"
-               placeholder="Senha do manager"
-               autocomplete="current-password"
-               required>
-
-        <button class="btn" type="submit">
-            Entrar
-        </button>
-
-    </form>
-
-    <div id="managerLoginMsg" class="msg"></div>
-
-</div>
-
-</section><section id="manager" class="page"><div class="card">
-
-    <h2>Painel do Manager</h2>
-
-    <p>
-        Área de gerenciamento do sistema.
-    </p>
-
-    <span class="badge">
-        Membros:
-        <strong id="memberCount">0</strong>
-    </span>
-
-    <button class="btn secondary"
-            id="refreshMembers"
-            type="button">
-        Atualizar
-    </button>
-
-    <button class="btn danger"
-            id="managerLogout"
-            type="button">
-        Sair
-    </button>
-
-</div>
-
-
-<div class="card">
-
-    <h2>Informações do site</h2>
-
-    <form id="siteForm">
-
-        <input id="newTitle"
-               placeholder="Título do site"
-               required>
-
-        <input id="newDescription"
-               placeholder="Descrição"
-               required>
-
-        <button class="btn" type="submit">
-            Salvar alterações
-        </button>
-
-    </form>
-
-    <div id="siteMsg" class="msg"></div>
-
-</div>
-
-
-<div class="card">
-
-    <h2>Membros cadastrados</h2>
-
-    <div id="membersList">
-        <p>Nenhum membro carregado.</p>
-    </div>
-
-</div>
-
-</section></main><div class="version">v2.0</div><script>
-"use strict";
-
-const $ = id => document.getElementById(id);
-
-
-/* =========================
-   NAVEGAÇÃO
-========================= */
-
-function showPage(page) {
-
-    document.querySelectorAll(".page").forEach(p => {
-        p.classList.remove("active");
-    });
-
-    const target = $(page);
-
-    if (target) {
-        target.classList.add("active");
-    }
-
-    closeMenu();
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================
-   MENSAGENS
-========================= */
-
-function showMsg(element, text, error = false) {
-
-    if (!element) return;
-
-    element.textContent = text;
-
-    element.className =
-        "msg show" +
-        (error ? " error" : "");
-}
-
-
-function clearMsg(element) {
-
-    if (!element) return;
-
-    element.textContent = "";
-    element.className = "msg";
-}
-
-
-/* =========================
-   MENU
-========================= */
-
-function openMenu() {
-
-    $("side").classList.add("open");
-    $("overlay").classList.add("show");
-}
-
-
-function closeMenu() {
-
-    $("side").classList.remove("open");
-    $("overlay").classList.remove("show");
-}
-
-
-$("menuBtn").addEventListener("click", openMenu);
-
-$("closeMenu").addEventListener("click", closeMenu);
-
-$("overlay").addEventListener("click", closeMenu);
-
-
-/* =========================
-   NAVEGAÇÃO DOS BOTÕES
-========================= */
-
-document.addEventListener("click", event => {
-
-    const button =
-        event.target.closest("[data-page]");
-
-    if (!button) return;
-
-    const page =
-        button.getAttribute("data-page");
-
-    if (page) {
-        showPage(page);
-    }
-});
-
-
-/* =========================
-   API
-========================= */
-
-async function api(url, options = {}) {
-
-    const response = await fetch(url, {
-        credentials: "same-origin",
-        ...options,
-
-        headers: {
-            "Content-Type": "application/json",
-            ...(options.headers || {})
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
-    });
-
-    let data = {};
-
-    try {
-        data = await response.json();
-    } catch {
-        data = {};
-    }
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            data.error ||
-            "Erro na solicitação."
-        );
-    }
-
-    return data;
-}
 
 
-/* =========================
-   CADASTRO
-========================= */
-
-$("registerForm").addEventListener(
-    "submit",
-    async event => {
-
-        event.preventDefault();
-
-        const msg = $("registerMsg");
-
-        clearMsg(msg);
-
-        try {
-
-            const data = await api(
-                "/api/member/register",
-                {
-                    method: "POST",
-
-                    body: JSON.stringify({
-                        name: $("regName").value.trim(),
-                        user: $("regUser").value.trim(),
-                        pass: $("regPass").value
-                    })
-                }
-            );
-
-            showMsg(
-                msg,
-                data.message || "Membro cadastrado!"
-            );
-
-            event.target.reset();
-
-        } catch (error) {
-
-            showMsg(
-                msg,
-                error.message,
-                true
-            );
+        body {
+            background: #fff;
+            color: #222;
+            min-height: 100vh;
         }
-    }
-);
 
 
-/* =========================
-   LOGIN MEMBRO
-========================= */
-
-$("memberLoginForm").addEventListener(
-    "submit",
-    async event => {
-
-        event.preventDefault();
-
-        const msg =
-            $("memberLoginMsg");
-
-        clearMsg(msg);
-
-        try {
-
-            const data = await api(
-                "/api/member/login",
-                {
-                    method: "POST",
-
-                    body: JSON.stringify({
-                        user: $("loginUser").value.trim(),
-                        pass: $("loginPass").value
-                    })
-                }
-            );
-
-            $("welcomeMember").textContent =
-                "Bem-vindo, " +
-                (data.member?.name || "membro") +
-                "!";
-
-            event.target.reset();
-
-            showPage("memberSuccess");
-
-        } catch (error) {
-
-            showMsg(
-                msg,
-                error.message,
-                true
-            );
+        button,
+        input {
+            font-family: inherit;
         }
-    }
-);
 
 
-/* =========================
-   LOGOUT MEMBRO
-========================= */
+        .hidden {
+            display: none !important;
+        }
 
-$("memberLogout").addEventListener(
-    "click",
-    async () => {
 
-        try {
+        /* =========================
+           TELA DE CADASTRO
+        ========================= */
 
-            await api(
-                "/api/member/logout",
-                {
-                    method: "POST"
-                }
+        .auth-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #ffe6f0
+                );
+
+        }
+
+
+        .auth-box {
+
+            width: 100%;
+
+            max-width: 400px;
+
+            background: white;
+
+            padding: 30px 25px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, 0.10);
+
+        }
+
+
+        .logo {
+
+            text-align: center;
+
+            color: #e91e63;
+
+            font-size: 28px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #777;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .auth-box input {
+
+            width: 100%;
+
+            padding: 14px;
+
+            margin-bottom: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            font-size: 15px;
+
+        }
+
+
+        .auth-box input:focus {
+
+            border-color: #e91e63;
+
+        }
+
+
+        .main-button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #e91e63;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        .main-button:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        .secondary-button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 10px;
+
+            border: 1px solid #e91e63;
+
+            border-radius: 12px;
+
+            background: white;
+
+            color: #e91e63;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        .message {
+
+            text-align: center;
+
+            margin-top: 12px;
+
+            font-size: 14px;
+
+        }
+
+
+        /* =========================
+           SITE PRINCIPAL
+        ========================= */
+
+        #sitePage {
+
+            min-height: 100vh;
+
+            padding-bottom: 80px;
+
+        }
+
+
+        header {
+
+            background: #e91e63;
+
+            color: white;
+
+            padding: 18px;
+
+            text-align: center;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 10;
+
+        }
+
+
+        header h1 {
+
+            font-size: 24px;
+
+        }
+
+
+        .content {
+
+            padding: 18px;
+
+            max-width: 1100px;
+
+            margin: auto;
+
+        }
+
+
+        .welcome {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .welcome h2 {
+
+            font-size: 23px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .welcome p {
+
+            color: #777;
+
+        }
+
+
+        /* =========================
+           PRODUTOS
+        ========================= */
+
+        .products-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+
+        }
+
+
+        .product-card {
+
+            background: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid #eee;
+
+            box-shadow:
+                0 4px 15px
+                rgba(0, 0, 0, 0.07);
+
+        }
+
+
+        .product-image {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            background: #f7f7f7;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .no-image {
+
+            font-size: 42px;
+
+        }
+
+
+        .product-info {
+
+            padding: 12px;
+
+        }
+
+
+        .product-info h3 {
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .product-info p {
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .price {
+
+            color: #e91e63;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .product-button {
+
+            width: 100%;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #e91e63;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           BUSCA
+        ========================= */
+
+        .search-box {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 14px;
+
+            font-size: 16px;
+
+            outline: none;
+
+        }
+
+
+        .search-box input:focus {
+
+            border-color: #e91e63;
+
+        }
+
+
+        .no-results {
+
+            text-align: center;
+
+            color: #777;
+
+            padding: 30px 10px;
+
+        }
+
+
+        /* =========================
+           PERFIL
+        ========================= */
+
+        .profile-box {
+
+            max-width: 500px;
+
+            margin: auto;
+
+            background: white;
+
+            border: 1px solid #eee;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.07);
+
+            text-align: center;
+
+        }
+
+
+        .profile-photo {
+
+            width: 110px;
+
+            height: 110px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 15px;
+
+            background: #ffe6f0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border: 3px solid #e91e63;
+
+        }
+
+
+        .profile-photo img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+        .profile-default {
+
+            font-size: 45px;
+
+        }
+
+
+        .profile-info {
+
+            text-align: left;
+
+            margin-top: 20px;
+
+        }
+
+
+        .profile-item {
+
+            padding: 14px;
+
+            border-bottom: 1px solid #eee;
+
+        }
+
+
+        .profile-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .profile-label {
+
+            font-size: 12px;
+
+            color: #999;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .profile-value {
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+        }
+
+
+        .logout-button {
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background: #222;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================
+           BARRA INFERIOR
+        ========================= */
+
+        .bottom-nav {
+
+            position: fixed;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 68px;
+
+            background: white;
+
+            border-top: 1px solid #eee;
+
+            display: flex;
+
+            justify-content: space-around;
+
+            align-items: center;
+
+            z-index: 100;
+
+            box-shadow:
+                0 -3px 15px
+                rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        .nav-button {
+
+            background: none;
+
+            border: none;
+
+            color: #888;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 3px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            min-width: 70px;
+
+        }
+
+
+        .nav-icon {
+
+            font-size: 23px;
+
+        }
+
+
+        .nav-button.active {
+
+            color: #e91e63;
+
+            font-weight: bold;
+
+        }
+
+
+        /* =========================
+           VERSÃO
+        ========================= */
+
+        .version {
+
+            position: fixed;
+
+            right: 8px;
+
+            bottom: 72px;
+
+            color: #aaa;
+
+            font-size: 10px;
+
+            z-index: 20;
+
+        }
+
+
+        /* =========================
+           DESKTOP
+        ========================= */
+
+        @media (min-width: 700px) {
+
+            .products-grid {
+
+                grid-template-columns:
+                    repeat(4, 1fr);
+
+            }
+
+
+            .content {
+
+                padding: 30px;
+
+            }
+
+
+            header h1 {
+
+                font-size: 28px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         CADASTRO
+    ========================= -->
+
+    <section
+        id="registerPage"
+        class="auth-page"
+    >
+
+        <div class="auth-box">
+
+            <div class="logo">
+                perfumes❤️Tâmara
+            </div>
+
+
+            <div class="subtitle">
+                Criar uma nova conta
+            </div>
+
+
+            <form id="registerForm">
+
+
+                <!-- NOME DA PESSOA -->
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Nome"
+                    required
+                >
+
+
+                <!-- ID ÚNICO DA CONTA -->
+
+                <input
+                    type="text"
+                    id="registerUser"
+                    placeholder="ID de usuário"
+                    required
+                >
+
+
+                <!-- SENHA -->
+
+                <input
+                    type="password"
+                    id="registerPass"
+                    placeholder="Senha"
+                    required
+                >
+
+
+                <button
+                    class="main-button"
+                    type="submit"
+                >
+                    Criar conta
+                </button>
+
+
+            </form>
+
+
+            <button
+                class="secondary-button"
+                onclick="showLogin()"
+            >
+                Entrar na conta
+            </button>
+
+
+            <div
+                id="registerMessage"
+                class="message"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOGIN
+    ========================= -->
+
+    <section
+        id="loginPage"
+        class="auth-page hidden"
+    >
+
+        <div class="auth-box">
+
+            <div class="logo">
+                perfumes❤️Tâmara
+            </div>
+
+
+            <div class="subtitle">
+                Entrar na sua conta
+            </div>
+
+
+            <form id="loginForm">
+
+
+                <!-- AQUI É O ID DE USUÁRIO -->
+
+                <input
+                    type="text"
+                    id="loginUser"
+                    placeholder="ID de usuário"
+                    required
+                >
+
+
+                <input
+                    type="password"
+                    id="loginPass"
+                    placeholder="Senha"
+                    required
+                >
+
+
+                <button
+                    class="main-button"
+                    type="submit"
+                >
+                    Entrar
+                </button>
+
+
+            </form>
+
+
+            <button
+                class="secondary-button"
+                onclick="showRegister()"
+            >
+                Criar uma conta
+            </button>
+
+
+            <div
+                id="loginMessage"
+                class="message"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SITE
+    ========================= -->
+
+    <section
+        id="sitePage"
+        class="hidden"
+    >
+
+
+        <header>
+
+            <h1>
+                perfumes❤️Tâmara
+            </h1>
+
+        </header>
+
+
+        <!-- =========================
+             INÍCIO
+        ========================= -->
+
+        <main
+            id="homePage"
+            class="content"
+        >
+
+            <div class="welcome">
+
+                <h2>
+                    Olá,
+                    <span id="homeUserName">
+                        usuário
+                    </span>
+                    ! ❤️
+                </h2>
+
+                <p>
+                    Confira nossos produtos.
+                </p>
+
+            </div>
+
+
+            <div
+                id="homeProducts"
+                class="products-grid"
+            ></div>
+
+        </main>
+
+
+        <!-- =========================
+             BUSCA
+        ========================= -->
+
+        <main
+            id="searchPage"
+            class="content hidden"
+        >
+
+            <div class="welcome">
+
+                <h2>
+                    Buscar produtos 🔎
+                </h2>
+
+                <p>
+                    Digite o nome do produto
+                    para pesquisar.
+                </p>
+
+            </div>
+
+
+            <div class="search-box">
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Pesquisar produto..."
+                    oninput="renderSearch()"
+                >
+
+            </div>
+
+
+            <!--
+                IMPORTANTE:
+                ESTE ESPAÇO COMEÇA VAZIO.
+                OS PRODUTOS SÓ APARECEM
+                DEPOIS QUE A PESSOA PESQUISAR.
+            -->
+
+            <div
+                id="searchProducts"
+                class="products-grid"
+            ></div>
+
+        </main>
+
+
+        <!-- =========================
+             PERFIL
+        ========================= -->
+
+        <main
+            id="profilePage"
+            class="content hidden"
+        >
+
+            <div class="welcome">
+
+                <h2>
+                    Meu perfil 👤
+                </h2>
+
+            </div>
+
+
+            <div class="profile-box">
+
+
+                <div
+                    class="profile-photo"
+                    id="profilePhoto"
+                >
+
+                    <span class="profile-default">
+                        👤
+                    </span>
+
+                </div>
+
+
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                    class="hidden"
+                >
+
+
+                <button
+                    class="secondary-button"
+                    onclick="choosePhoto()"
+                >
+                    📷 Escolher foto do dispositivo
+                </button>
+
+
+                <div class="profile-info">
+
+
+                    <!-- NOME -->
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            Nome
+                        </div>
+
+                        <div
+                            class="profile-value"
+                            id="profileName"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <!-- ID DE USUÁRIO -->
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            ID de usuário
+                        </div>
+
+                        <div
+                            class="profile-value"
+                            id="profileUser"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+
+                    <!-- SENHA -->
+
+                    <div class="profile-item">
+
+                        <div class="profile-label">
+                            Senha
+                        </div>
+
+                        <div class="profile-value">
+                            ••••••••
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    class="logout-button"
+                    onclick="logout()"
+                >
+                    Sair da conta
+                </button>
+
+
+            </div>
+
+        </main>
+
+
+        <!-- =========================
+             BARRA INFERIOR
+        ========================= -->
+
+        <nav class="bottom-nav">
+
+
+            <button
+                id="navHome"
+                class="nav-button active"
+                onclick="showPage('home')"
+            >
+
+                <span class="nav-icon">
+                    🏠
+                </span>
+
+                <span>
+                    Início
+                </span>
+
+            </button>
+
+
+            <button
+                id="navSearch"
+                class="nav-button"
+                onclick="showPage('search')"
+            >
+
+                <span class="nav-icon">
+                    🔎
+                </span>
+
+                <span>
+                    Busca
+                </span>
+
+            </button>
+
+
+            <button
+                id="navProfile"
+                class="nav-button"
+                onclick="showPage('profile')"
+            >
+
+                <span class="nav-icon">
+                    👤
+                </span>
+
+                <span>
+                    Perfil
+                </span>
+
+            </button>
+
+
+        </nav>
+
+
+        <div class="version">
+            v4.5
+        </div>
+
+
+    </section>
+
+
+    <script>
+
+
+        /* =========================
+           USUÁRIO ATUAL
+        ========================= */
+
+        let currentUser = {
+
+            name: "",
+
+            user: ""
+
+        };
+
+
+        /* =========================
+           PRODUTOS
+        ========================= */
+
+        const products = [
+
+            {
+
+                name:
+                    "perfume uomini 200ml",
+
+                description:
+                    "Perfume masculino 200ml.",
+
+                price:
+                    "R$ 00,00",
+
+                image:
+                    ""
+
+            }
+
+        ];
+
+
+        /* =========================
+           ELEMENTOS
+        ========================= */
+
+        const registerPage =
+            document.getElementById(
+                "registerPage"
             );
 
-        } catch {}
-
-        showPage("home");
-    }
-);
-
-
-/* =========================
-   LOGIN MANAGER
-========================= */
-
-$("managerLoginForm").addEventListener(
-    "submit",
-    async event => {
-
-        event.preventDefault();
-
-        const msg =
-            $("managerLoginMsg");
-
-        clearMsg(msg);
-
-        try {
-
-            await api(
-                "/api/manager/login",
-                {
-                    method: "POST",
-
-                    body: JSON.stringify({
-                        user:
-                            $("managerUser")
-                            .value
-                            .trim(),
-
-                        pass:
-                            $("managerPass")
-                            .value
-                    })
-                }
+        const loginPage =
+            document.getElementById(
+                "loginPage"
             );
 
-            event.target.reset();
+        const sitePage =
+            document.getElementById(
+                "sitePage"
+            );
 
-            $("managerNav")
+
+        /* =========================
+           TROCAR PARA LOGIN
+        ========================= */
+
+        function showLogin() {
+
+            registerPage
+                .classList
+                .add("hidden");
+
+            loginPage
                 .classList
                 .remove("hidden");
 
-            showPage("manager");
-
-            await loadManager();
-
-        } catch (error) {
-
-            showMsg(
-                msg,
-                error.message,
-                true
-            );
-        }
-    }
-);
-
-
-/* =========================
-   CARREGAR MANAGER
-========================= */
-
-async function loadManager() {
-
-    try {
-
-        await api(
-            "/api/manager/me"
-        );
-
-        $("managerNav")
-            .classList
-            .remove("hidden");
-
-        await loadCount();
-        await loadMembers();
-        await loadSite();
-
-    } catch {
-
-        $("managerNav")
-            .classList
-            .add("hidden");
-
-        showPage("managerLogin");
-    }
-}
-
-
-/* =========================
-   CONTAGEM
-========================= */
-
-async function loadCount() {
-
-    try {
-
-        const data =
-            await api(
-                "/api/manager/members/count"
-            );
-
-        $("memberCount").textContent =
-            data.count ?? 0;
-
-    } catch {
-
-        $("memberCount").textContent = "?";
-    }
-}
-
-
-/* =========================
-   MEMBROS
-========================= */
-
-async function loadMembers() {
-
-    const list =
-        $("membersList");
-
-    try {
-
-        const data =
-            await api(
-                "/api/manager/members"
-            );
-
-        const members =
-            data.members || [];
-
-        if (!members.length) {
-
-            list.innerHTML =
-                "<p>Nenhum membro cadastrado.</p>";
-
-            return;
         }
 
-        list.innerHTML = "";
 
-        members.forEach(member => {
+        /* =========================
+           TROCAR PARA CADASTRO
+        ========================= */
 
-            const item =
-                document.createElement("div");
+        function showRegister() {
 
-            item.className =
-                "member-item";
+            loginPage
+                .classList
+                .add("hidden");
 
+            registerPage
+                .classList
+                .remove("hidden");
 
-            const info =
-                document.createElement("div");
-
-
-            const name =
-                document.createElement("strong");
-
-            name.textContent =
-                member.name;
+        }
 
 
-            const user =
-                document.createElement("div");
+               /* =========================
+           ENTRAR NO SITE
+        ========================= */
 
-            user.className =
-                "small";
+        function enterSite(
+            name,
+            user
+        ) {
 
-            user.textContent =
-                "@" + member.user;
+            /*
+                name = NOME DA PESSOA
+                user = ID DE USUÁRIO
+            */
 
+            currentUser.name =
+                name || "";
 
-            info.append(
-                name,
-                user
-            );
-
-
-            const deleteButton =
-                document.createElement("button");
-
-            deleteButton.className =
-                "btn danger";
-
-            deleteButton.type =
-                "button";
-
-            deleteButton.textContent =
-                "Excluir";
+            currentUser.user =
+                user || "";
 
 
-            deleteButton.addEventListener(
-                "click",
-                () => deleteMember(member.id)
-            );
+            registerPage
+                .classList
+                .add("hidden");
+
+            loginPage
+                .classList
+                .add("hidden");
+
+            sitePage
+                .classList
+                .remove("hidden");
 
 
-            item.append(
-                info,
-                deleteButton
-            );
+            updateProfile();
 
-            list.appendChild(item);
-        });
+            renderHome();
 
-    } catch {
+            renderSearch();
 
-        list.innerHTML =
-            "<p>Não foi possível carregar os membros.</p>";
-    }
-}
+            showPage("home");
+
+        }
 
 
-/* =========================
-   EXCLUIR MEMBRO
-========================= */
+        /* =========================
+           ATUALIZAR PERFIL
+        ========================= */
 
-async function deleteMember(id) {
+        function updateProfile() {
 
-    if (!confirm("Excluir este membro?")) {
-        return;
-    }
+            document
+                .getElementById("homeUserName")
+                .textContent =
+                    currentUser.name ||
+                    "usuário";
 
-    try {
 
-        await api(
-            "/api/manager/members/" +
-            encodeURIComponent(id),
-            {
-                method: "DELETE"
+            document
+                .getElementById("profileName")
+                .textContent =
+                    currentUser.name ||
+                    "—";
+
+
+            document
+                .getElementById("profileUser")
+                .textContent =
+                    currentUser.user ||
+                    "—";
+
+        }
+
+
+        /* =========================
+           NAVEGAÇÃO
+        ========================= */
+
+        function showPage(page) {
+
+            const homePage =
+                document.getElementById("homePage");
+
+            const searchPage =
+                document.getElementById("searchPage");
+
+            const profilePage =
+                document.getElementById("profilePage");
+
+
+            homePage
+                .classList
+                .add("hidden");
+
+            searchPage
+                .classList
+                .add("hidden");
+
+            profilePage
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("navHome")
+                .classList
+                .remove("active");
+
+            document
+                .getElementById("navSearch")
+                .classList
+                .remove("active");
+
+            document
+                .getElementById("navProfile")
+                .classList
+                .remove("active");
+
+
+            if (page === "home") {
+
+                homePage
+                    .classList
+                    .remove("hidden");
+
+                document
+                    .getElementById("navHome")
+                    .classList
+                    .add("active");
+
+                renderHome();
+
             }
-        );
-
-        await loadCount();
-        await loadMembers();
-
-    } catch (error) {
-
-        alert(error.message);
-    }
-}
 
 
-/* =========================
-   ATUALIZAR
-========================= */
+            if (page === "search") {
 
-$("refreshMembers").addEventListener(
-    "click",
-    async () => {
+                searchPage
+                    .classList
+                    .remove("hidden");
 
-        await loadCount();
-        await loadMembers();
-        await loadSite();
-    }
-);
+                document
+                    .getElementById("navSearch")
+                    .classList
+                    .add("active");
+
+                renderSearch();
+
+            }
 
 
-/* =========================
-   LOGOUT MANAGER
-========================= */
+            if (page === "profile") {
 
-$("managerLogout").addEventListener(
-    "click",
-    async () => {
+                profilePage
+                    .classList
+                    .remove("hidden");
 
-        try {
+                document
+                    .getElementById("navProfile")
+                    .classList
+                    .add("active");
 
-            await api(
-                "/api/manager/logout",
-                {
-                    method: "POST"
+                updateProfile();
+
+            }
+
+        }
+
+
+        /* =========================
+           CRIAR CARD
+        ========================= */
+
+        function createProductCard(product) {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "product-card";
+
+
+            let imageHTML = "";
+
+
+            if (product.image) {
+
+                imageHTML = `
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                    >
+                `;
+
+            } else {
+
+                imageHTML = `
+                    <span class="no-image">
+                        🧴
+                    </span>
+                `;
+
+            }
+
+
+            card.innerHTML = `
+
+                <div class="product-image">
+                    ${imageHTML}
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        ${product.description}
+                    </p>
+
+                    <div class="price">
+                        ${product.price}
+                    </div>
+
+                    <button
+                        class="product-button"
+                        onclick="selectProduct('${escapeQuotes(product.name)}')"
+                    >
+                        Ver produto
+                    </button>
+
+                </div>
+
+            `;
+
+
+            return card;
+
+        }
+
+
+        /* =========================
+           HOME
+        ========================= */
+
+        function renderHome() {
+
+            const container =
+                document.getElementById(
+                    "homeProducts"
+                );
+
+            container.innerHTML = "";
+
+
+            if (products.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="no-results">
+                        Nenhum produto disponível.
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            products.forEach(
+                function(product) {
+
+                    container.appendChild(
+                        createProductCard(product)
+                    );
+
                 }
             );
 
-        } catch {}
-
-        $("managerNav")
-            .classList
-            .add("hidden");
-
-        showPage("home");
-    }
-);
+        }
 
 
-/* =========================
-   ALTERAR SITE
-========================= */
+        /* =========================
+           BUSCA
+        ========================= */
 
-$("siteForm").addEventListener(
-    "submit",
-    async event => {
+        function renderSearch() {
 
-        event.preventDefault();
+            const container =
+                document.getElementById(
+                    "searchProducts"
+                );
 
-        const msg =
-            $("siteMsg");
+            const input =
+                document.getElementById(
+                    "searchInput"
+                );
 
-        clearMsg(msg);
 
-        const title =
-            $("newTitle")
-            .value
-            .trim();
+            const search =
+                input.value
+                    .trim()
+                    .toLowerCase();
 
-        const description =
-            $("newDescription")
-            .value
-            .trim();
 
-        try {
+            container.innerHTML = "";
 
-            const data =
-                await api(
-                    "/api/manager/site",
-                    {
-                        method: "PUT",
 
-                        body: JSON.stringify({
-                            title,
-                            description
-                        })
+            /*
+                NÃO MOSTRAR PRODUTOS
+                ANTES DA PESQUISA.
+            */
+
+            if (search === "") {
+
+                return;
+
+            }
+
+
+            const results =
+                products.filter(
+                    function(product) {
+
+                        const name =
+                            product.name
+                                .toLowerCase();
+
+                        const description =
+                            product.description
+                                .toLowerCase();
+
+
+                        return (
+                            name.includes(search) ||
+                            description.includes(search)
+                        );
+
                     }
                 );
 
-            applySite(
-                data.site
+
+            if (results.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="no-results">
+                        Nenhum produto encontrado.
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            results.forEach(
+                function(product) {
+
+                    container.appendChild(
+                        createProductCard(product)
+                    );
+
+                }
             );
 
-            showMsg(
-                msg,
-                data.message ||
-                "Configurações alteradas."
+        }        function selectProduct(name) {
+
+            alert(
+                "Você selecionou: " +
+                name +
+                " ❤️"
             );
 
-        } catch (error) {
-
-            showMsg(
-                msg,
-                error.message,
-                true
-            );
         }
-    }
-);
 
 
-/* =========================
-   CARREGAR SITE
-========================= */
+        function escapeQuotes(text) {
 
-async function loadSite() {
+            return String(text)
+                .replace(/\\/g, "\\\\")
+                .replace(/'/g, "\\'");
 
-    try {
-
-        const site =
-            await api("/api/site");
-
-        applySite(site);
-
-    } catch (error) {
-
-        console.error(
-            "Erro ao carregar configurações:",
-            error
-        );
-    }
-}
+        }
 
 
-/* =========================
-   APLICAR CONFIGURAÇÕES
-========================= */
+        function choosePhoto() {
 
-function applySite(site) {
+            document
+                .getElementById("photoInput")
+                .click();
 
-    if (!site) return;
-
-    if (site.title) {
-
-        $("siteTitle").textContent =
-            site.title;
-
-        $("homeTitle").textContent =
-            site.title;
-
-        document.title =
-            site.title;
-    }
-
-    if (site.description) {
-
-        $("homeDescription").textContent =
-            site.description;
-    }
-
-    $("newTitle").value =
-        site.title || "";
-
-    $("newDescription").value =
-        site.description || "";
-}
+        }
 
 
-/* =========================
-   INICIALIZAÇÃO
-========================= */
+        document
+            .getElementById("photoInput")
+            .addEventListener(
+                "change",
+                function () {
 
-loadSite();
+                    const file =
+                        this.files[0];
 
-loadManager();
+                    if (!file) {
+                        return;
+                    }
 
-</script></body>
+                    const reader =
+                        new FileReader();
+
+                    reader.onload =
+                        function (event) {
+
+                            document
+                                .getElementById(
+                                    "profilePhoto"
+                                )
+                                .src =
+                                    event.target.result;
+
+                        };
+
+                    reader.readAsDataURL(file);
+
+                }
+            );
+
+
+        document
+            .getElementById("registerForm")
+            .addEventListener(
+                "submit",
+                async function (event) {
+
+                    event.preventDefault();
+
+
+                    const name =
+                        document
+                            .getElementById(
+                                "registerName"
+                            )
+                            .value
+                            .trim();
+
+                    const user =
+                        document
+                            .getElementById(
+                                "registerUser"
+                            )
+                            .value
+                            .trim()
+                            .toLowerCase();
+
+                    const pass =
+                        document
+                            .getElementById(
+                                "registerPass"
+                            )
+                            .value;
+
+
+                    if (
+                        !name ||
+                        !user ||
+                        !pass
+                    ) {
+
+                        alert(
+                            "Preencha todos os campos."
+                        );
+
+                        return;
+
+                    }
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "/api/member/register",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+                                        name: name,
+                                        user: user,
+                                        pass: pass
+                                    })
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (!response.ok) {
+
+                            alert(
+                                data.error ||
+                                data.message ||
+                                "Não foi possível criar a conta."
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                            Depois de criar a conta,
+                            entra automaticamente.
+
+                            O NOME continua sendo o nome
+                            da pessoa.
+
+                            O USER continua sendo apenas
+                            o ID da conta.
+                        */
+
+                        const loginResponse =
+                            await fetch(
+                                "/api/member/login",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+                                        user: user,
+                                        pass: pass
+                                    })
+                                }
+                            );
+
+
+                        const loginData =
+                            await loginResponse.json();
+
+
+                        if (!loginResponse.ok) {
+
+                            alert(
+                                loginData.error ||
+                                loginData.message ||
+                                "Conta criada, mas não foi possível entrar."
+                            );
+
+                            return;
+
+                        }
+
+
+                        enterSite(
+                            loginData.name || name,
+                            user
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(error);
+
+                        alert(
+                            "Erro de conexão com o servidor."
+                        );
+
+                    }
+
+                }
+            );
+
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                async function (event) {
+
+                    event.preventDefault();
+
+
+                    const user =
+                        document
+                            .getElementById(
+                                "loginUser"
+                            )
+                            .value
+                            .trim()
+                            .toLowerCase();
+
+                    const pass =
+                        document
+                            .getElementById(
+                                "loginPass"
+                            )
+                            .value;
+
+
+                    if (
+                        !user ||
+                        !pass
+                    ) {
+
+                        alert(
+                            "Digite seu ID de usuário e senha."
+                        );
+
+                        return;
+
+                    }
+
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                "/api/member/login",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+                                        user: user,
+                                        pass: pass
+                                    })
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        if (!response.ok) {
+
+                            alert(
+                                data.error ||
+                                data.message ||
+                                "ID ou senha incorretos."
+                            );
+
+                            return;
+
+                        }
+
+
+                        /*
+                            IMPORTANTE:
+
+                            data.name = nome da pessoa
+                            user      = ID da conta
+
+                            O ID NÃO será usado como nome.
+                        */
+
+                        enterSite(
+                            data.name || "Usuário",
+                            user
+                        );
+
+                    }
+
+                    catch (error) {
+
+                        console.error(error);
+
+                        alert(
+                            "Erro de conexão com o servidor."
+                        );
+
+                    }
+
+                }
+            );
+
+
+        async function logout() {
+
+            try {
+
+                await fetch(
+                    "/api/member/logout",
+                    {
+                        method: "POST"
+                    }
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+            }
+
+
+            currentUser.name = "";
+            currentUser.user = "";
+
+
+            sitePage
+                .classList
+                .add("hidden");
+
+            loginPage
+                .classList
+                .remove("hidden");
+
+
+            document
+                .getElementById("loginForm")
+                .reset();
+
+        }
+
+
+        /*
+            Inicialização
+        */
+
+        renderHome();
+
+        renderSearch();
+
+    </script>
+
+</body>
+
 </html>
