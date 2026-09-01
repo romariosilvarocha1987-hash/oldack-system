@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OLDACK SYSTEM</title>
-
-<style>
+<title>OLDACK SYSTEM</title><style>
 * {
     box-sizing: border-box;
     margin: 0;
@@ -245,334 +242,229 @@ input:focus {
         flex-direction: column;
     }
 }
-</style>
-</head>
-
-<body>
-
-<header>
+</style></head><body><header>
     <button class="menu-btn" id="menuBtn" type="button">☰</button>
     <div class="logo" id="siteTitle">OLDACK SYSTEM</div>
-</header>
+</header><div class="overlay" id="overlay"></div><aside class="side" id="side"><button class="close" id="closeMenu" type="button">×</button>
 
-<div class="overlay" id="overlay"></div>
+<h2>Menu</h2>
 
-<aside class="side" id="side">
+<button class="nav" data-page="home" type="button">🏠 Início</button>
 
-    <button class="close" id="closeMenu" type="button">×</button>
+<button class="nav" data-page="register" type="button">
+    📝 Cadastrar membro
+</button>
 
-    <h2>Menu</h2>
+<button class="nav" data-page="memberLogin" type="button">
+    👤 Entrar como membro
+</button>
 
-    <button class="nav" data-page="home" type="button">
-        🏠 Início
+<button class="nav" data-page="managerLogin" type="button">
+    🔐 Entrar como manager
+</button>
+
+<button class="nav hidden" id="managerNav" data-page="manager" type="button">
+    ⚙️ Painel do manager
+</button>
+
+</aside><main><section id="home" class="page active"><div class="card">
+
+    <h1 id="homeTitle">OLDACK SYSTEM</h1>
+
+    <p id="homeDescription">
+        Sistema de membros e gerenciamento.
+    </p>
+
+    <button class="btn" data-page="register" type="button">
+        Cadastrar membro
     </button>
 
-    <button class="nav" data-page="register" type="button">
-        📝 Cadastrar membro
+    <button class="btn secondary" data-page="memberLogin" type="button">
+        Entrar
     </button>
 
-    <button class="nav" data-page="memberLogin" type="button">
-        👤 Entrar como membro
-    </button>
+</div>
 
-    <button class="nav" data-page="managerLogin" type="button">
-        🔐 Entrar como manager
-    </button>
+</section><section id="register" class="page"><div class="card">
 
-    <button
-        class="nav hidden"
-        id="managerNav"
-        data-page="manager"
-        type="button">
-        ⚙️ Painel do manager
-    </button>
+    <h2>Cadastrar membro</h2>
 
-</aside>
+    <form id="registerForm">
 
-<main>
+        <input id="regName"
+               placeholder="Nome"
+               autocomplete="name"
+               required>
 
-<!-- INÍCIO -->
+        <input id="regUser"
+               placeholder="Usuário"
+               autocomplete="username"
+               required>
 
-<section id="home" class="page active">
+        <input id="regPass"
+               type="password"
+               placeholder="Senha"
+               autocomplete="new-password"
+               required>
 
-    <div class="card">
-
-        <h1 id="homeTitle">
-            OLDACK SYSTEM
-        </h1>
-
-        <p id="homeDescription">
-            Sistema de membros e gerenciamento.
-        </p>
-
-        <button
-            class="btn"
-            data-page="register"
-            type="button">
-            Cadastrar membro
+        <button class="btn" type="submit">
+            Cadastrar
         </button>
 
-        <button
-            class="btn secondary"
-            data-page="memberLogin"
-            type="button">
+    </form>
+
+    <div id="registerMsg" class="msg"></div>
+
+</div>
+
+</section><section id="memberLogin" class="page"><div class="card">
+
+    <h2>Entrar como membro</h2>
+
+    <form id="memberLoginForm">
+
+        <input id="loginUser"
+               placeholder="Usuário"
+               autocomplete="username"
+               required>
+
+        <input id="loginPass"
+               type="password"
+               placeholder="Senha"
+               autocomplete="current-password"
+               required>
+
+        <button class="btn" type="submit">
             Entrar
         </button>
 
-    </div>
+    </form>
 
-</section>
+    <div id="memberLoginMsg" class="msg"></div>
 
+</div>
 
-<!-- CADASTRO -->
+</section><section id="memberSuccess" class="page"><div class="card">
 
-<section id="register" class="page">
+    <h1>Teste concluído ✅</h1>
 
-    <div class="card">
+    <p id="welcomeMember">
+        Você entrou como membro.
+    </p>
 
-        <h2>Cadastrar membro</h2>
-
-        <form id="registerForm">
-
-            <input
-                id="regName"
-                placeholder="Nome"
-                autocomplete="name"
-                required>
-
-            <input
-                id="regUser"
-                placeholder="Usuário"
-                autocomplete="username"
-                required>
-
-            <input
-                id="regPass"
-                type="password"
-                placeholder="Senha"
-                autocomplete="new-password"
-                required>
-
-            <button
-                class="btn"
-                type="submit">
-                Cadastrar
-            </button>
-
-        </form>
-
-        <div id="registerMsg" class="msg"></div>
-
-    </div>
-
-</section>
-
-
-<!-- LOGIN MEMBRO -->
-
-<section id="memberLogin" class="page">
-
-    <div class="card">
-
-        <h2>Entrar como membro</h2>
-
-        <form id="memberLoginForm">
-
-            <input
-                id="loginUser"
-                placeholder="Usuário"
-                autocomplete="username"
-                required>
-
-            <input
-                id="loginPass"
-                type="password"
-                placeholder="Senha"
-                autocomplete="current-password"
-                required>
-
-            <button
-                class="btn"
-                type="submit">
-                Entrar
-            </button>
-
-        </form>
-
-        <div id="memberLoginMsg" class="msg"></div>
-
-    </div>
-
-</section>
-
-
-<!-- MEMBRO LOGADO -->
-
-<section id="memberSuccess" class="page">
-
-    <div class="card">
-
-        <h1>
-            Teste concluído ✅
-        </h1>
-
-        <p id="welcomeMember">
-            Você entrou como membro.
-        </p>
-
-        <button
-            class="btn secondary"
+    <button class="btn secondary"
             id="memberLogout"
             type="button">
-            Sair
+        Sair
+    </button>
+
+</div>
+
+</section><section id="managerLogin" class="page"><div class="card">
+
+    <h2>Login do manager</h2>
+
+    <form id="managerLoginForm">
+
+        <input id="managerUser"
+               placeholder="Usuário do manager"
+               autocomplete="username"
+               required>
+
+        <input id="managerPass"
+               type="password"
+               placeholder="Senha do manager"
+               autocomplete="current-password"
+               required>
+
+        <button class="btn" type="submit">
+            Entrar
         </button>
 
-    </div>
+    </form>
 
-</section>
+    <div id="managerLoginMsg" class="msg"></div>
 
+</div>
 
-<!-- LOGIN MANAGER -->
+</section><section id="manager" class="page"><div class="card">
 
-<section id="managerLogin" class="page">
+    <h2>Painel do Manager</h2>
 
-    <div class="card">
+    <p>
+        Área de gerenciamento do sistema.
+    </p>
 
-        <h2>Login do manager</h2>
+    <span class="badge">
+        Membros:
+        <strong id="memberCount">0</strong>
+    </span>
 
-        <form id="managerLoginForm">
-
-            <input
-                id="managerUser"
-                placeholder="Usuário do manager"
-                autocomplete="username"
-                required>
-
-            <input
-                id="managerPass"
-                type="password"
-                placeholder="Senha do manager"
-                autocomplete="current-password"
-                required>
-
-            <button
-                class="btn"
-                type="submit">
-                Entrar
-            </button>
-
-        </form>
-
-        <div id="managerLoginMsg" class="msg"></div>
-
-    </div>
-
-</section>
-
-
-<!-- PAINEL MANAGER -->
-
-<section id="manager" class="page">
-
-    <div class="card">
-
-        <h2>Painel do Manager</h2>
-
-        <p>
-            Área de gerenciamento do sistema.
-        </p>
-
-        <span class="badge">
-            Membros:
-            <strong id="memberCount">0</strong>
-        </span>
-
-        <button
-            class="btn secondary"
+    <button class="btn secondary"
             id="refreshMembers"
             type="button">
-            Atualizar
-        </button>
+        Atualizar
+    </button>
 
-        <button
-            class="btn danger"
+    <button class="btn danger"
             id="managerLogout"
             type="button">
-            Sair
-        </button>
+        Sair
+    </button>
 
-    </div>
-
-
-    <div class="card">
-
-        <h2>Informações do site</h2>
-
-        <form id="siteForm">
-
-            <input
-                id="newTitle"
-                placeholder="Título do site"
-                required>
-
-            <input
-                id="newDescription"
-                placeholder="Descrição"
-                required>
-
-            <button
-                class="btn"
-                type="submit">
-                Salvar alterações
-            </button>
-
-        </form>
-
-        <div id="siteMsg" class="msg"></div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>
-            Membros cadastrados
-        </h2>
-
-        <div id="membersList">
-            <p>Nenhum membro carregado.</p>
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-<div class="version">
-    v2.0
 </div>
 
 
-<script>
+<div class="card">
 
+    <h2>Informações do site</h2>
+
+    <form id="siteForm">
+
+        <input id="newTitle"
+               placeholder="Título do site"
+               required>
+
+        <input id="newDescription"
+               placeholder="Descrição"
+               required>
+
+        <button class="btn" type="submit">
+            Salvar alterações
+        </button>
+
+    </form>
+
+    <div id="siteMsg" class="msg"></div>
+
+</div>
+
+
+<div class="card">
+
+    <h2>Membros cadastrados</h2>
+
+    <div id="membersList">
+        <p>Nenhum membro carregado.</p>
+    </div>
+
+</div>
+
+</section></main><div class="version">v2.0</div><script>
 "use strict";
-
-
-/* FUNÇÃO PARA PEGAR ELEMENTOS */
 
 const $ = id => document.getElementById(id);
 
 
-/* NAVEGAÇÃO */
+/* =========================
+   NAVEGAÇÃO
+========================= */
 
 function showPage(page) {
 
-    document
-        .querySelectorAll(".page")
-        .forEach(p => {
-            p.classList.remove("active");
-        });
+    document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+    });
 
     const target = $(page);
 
@@ -582,13 +474,20 @@ function showPage(page) {
 
     closeMenu();
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 
-/* MENSAGENS */
+/* =========================
+   MENSAGENS
+========================= */
 
 function showMsg(element, text, error = false) {
+
+    if (!element) return;
 
     element.textContent = text;
 
@@ -600,18 +499,20 @@ function showMsg(element, text, error = false) {
 
 function clearMsg(element) {
 
-    element.textContent = "";
+    if (!element) return;
 
+    element.textContent = "";
     element.className = "msg";
 }
 
 
-/* MENU */
+/* =========================
+   MENU
+========================= */
 
 function openMenu() {
 
     $("side").classList.add("open");
-
     $("overlay").classList.add("show");
 }
 
@@ -619,80 +520,60 @@ function openMenu() {
 function closeMenu() {
 
     $("side").classList.remove("open");
-
     $("overlay").classList.remove("show");
 }
 
 
-$("menuBtn").addEventListener(
-    "click",
-    openMenu
-);
+$("menuBtn").addEventListener("click", openMenu);
+
+$("closeMenu").addEventListener("click", closeMenu);
+
+$("overlay").addEventListener("click", closeMenu);
 
 
-$("closeMenu").addEventListener(
-    "click",
-    closeMenu
-);
+/* =========================
+   NAVEGAÇÃO DOS BOTÕES
+========================= */
 
+document.addEventListener("click", event => {
 
-$("overlay").addEventListener(
-    "click",
-    closeMenu
-);
+    const button =
+        event.target.closest("[data-page]");
 
+    if (!button) return;
 
-/* BOTÕES DE NAVEGAÇÃO */
+    const page =
+        button.getAttribute("data-page");
 
-document.addEventListener(
-    "click",
-    function(event) {
-
-        const button =
-            event.target.closest("[data-page]");
-
-        if (!button) return;
-
-        showPage(
-            button.dataset.page
-        );
+    if (page) {
+        showPage(page);
     }
-);
+});
 
 
-/* API */
+/* =========================
+   API
+========================= */
 
 async function api(url, options = {}) {
 
-    const response =
-        await fetch(
-            url,
-            {
-                credentials: "same-origin",
-                ...options,
+    const response = await fetch(url, {
+        credentials: "same-origin",
+        ...options,
 
-                headers: {
-                    "Content-Type":
-                        "application/json",
-
-                    ...(options.headers || {})
-                }
-            }
-        );
-
+        headers: {
+            "Content-Type": "application/json",
+            ...(options.headers || {})
+        }
+    });
 
     let data = {};
 
     try {
-
-        data =
-            await response.json();
-
-    } catch (error) {
-
+        data = await response.json();
+    } catch {
         data = {};
     }
-
 
     if (!response.ok) {
 
@@ -703,62 +584,45 @@ async function api(url, options = {}) {
         );
     }
 
-
     return data;
 }
 
 
-/* CADASTRO DE MEMBRO */
+/* =========================
+   CADASTRO
+========================= */
 
 $("registerForm").addEventListener(
     "submit",
-    async function(event) {
+    async event => {
 
         event.preventDefault();
 
-        const msg =
-            $("registerMsg");
+        const msg = $("registerMsg");
 
         clearMsg(msg);
 
-
         try {
 
-            const data =
-                await api(
-                    "/api/member/register",
-                    {
-                        method: "POST",
+            const data = await api(
+                "/api/member/register",
+                {
+                    method: "POST",
 
-                        body: JSON.stringify({
-
-                            name:
-                                $("regName")
-                                .value
-                                .trim(),
-
-                            user:
-                                $("regUser")
-                                .value
-                                .trim(),
-
-                            pass:
-                                $("regPass")
-                                .value
-                        })
-                    }
-                );
-
+                    body: JSON.stringify({
+                        name: $("regName").value.trim(),
+                        user: $("regUser").value.trim(),
+                        pass: $("regPass").value
+                    })
+                }
+            );
 
             showMsg(
                 msg,
-                data.message ||
-                "Membro cadastrado!"
+                data.message || "Membro cadastrado!"
             );
 
-
             event.target.reset();
-
 
         } catch (error) {
 
@@ -772,11 +636,13 @@ $("registerForm").addEventListener(
 );
 
 
-/* LOGIN MEMBRO */
+/* =========================
+   LOGIN MEMBRO
+========================= */
 
 $("memberLoginForm").addEventListener(
     "submit",
-    async function(event) {
+    async event => {
 
         event.preventDefault();
 
@@ -785,46 +651,28 @@ $("memberLoginForm").addEventListener(
 
         clearMsg(msg);
 
-
         try {
 
-            const data =
-                await api(
-                    "/api/member/login",
-                    {
-                        method: "POST",
+            const data = await api(
+                "/api/member/login",
+                {
+                    method: "POST",
 
-                        body: JSON.stringify({
-
-                            user:
-                                $("loginUser")
-                                .value
-                                .trim(),
-
-                            pass:
-                                $("loginPass")
-                                .value
-                        })
-                    }
-                );
-
+                    body: JSON.stringify({
+                        user: $("loginUser").value.trim(),
+                        pass: $("loginPass").value
+                    })
+                }
+            );
 
             $("welcomeMember").textContent =
                 "Bem-vindo, " +
-                (
-                    data.member?.name ||
-                    "membro"
-                ) +
+                (data.member?.name || "membro") +
                 "!";
-
 
             event.target.reset();
 
-
-            showPage(
-                "memberSuccess"
-            );
-
+            showPage("memberSuccess");
 
         } catch (error) {
 
@@ -838,11 +686,13 @@ $("memberLoginForm").addEventListener(
 );
 
 
-/* LOGOUT MEMBRO */
+/* =========================
+   LOGOUT MEMBRO
+========================= */
 
 $("memberLogout").addEventListener(
     "click",
-    async function() {
+    async () => {
 
         try {
 
@@ -853,19 +703,20 @@ $("memberLogout").addEventListener(
                 }
             );
 
-        } catch (error) {}
-
+        } catch {}
 
         showPage("home");
     }
 );
 
 
-/* LOGIN MANAGER */
+/* =========================
+   LOGIN MANAGER
+========================= */
 
 $("managerLoginForm").addEventListener(
     "submit",
-    async function(event) {
+    async event => {
 
         event.preventDefault();
 
@@ -873,7 +724,6 @@ $("managerLoginForm").addEventListener(
             $("managerLoginMsg");
 
         clearMsg(msg);
-
 
         try {
 
@@ -883,7 +733,6 @@ $("managerLoginForm").addEventListener(
                     method: "POST",
 
                     body: JSON.stringify({
-
                         user:
                             $("managerUser")
                             .value
@@ -896,20 +745,15 @@ $("managerLoginForm").addEventListener(
                 }
             );
 
-
             event.target.reset();
-
 
             $("managerNav")
                 .classList
                 .remove("hidden");
 
-
             showPage("manager");
 
-
             await loadManager();
-
 
         } catch (error) {
 
@@ -923,7 +767,9 @@ $("managerLoginForm").addEventListener(
 );
 
 
-/* CARREGAR PAINEL */
+/* =========================
+   CARREGAR MANAGER
+========================= */
 
 async function loadManager() {
 
@@ -933,34 +779,28 @@ async function loadManager() {
             "/api/manager/me"
         );
 
-
         $("managerNav")
             .classList
             .remove("hidden");
 
-
         await loadCount();
-
         await loadMembers();
-
         await loadSite();
 
-
-    } catch (error) {
+    } catch {
 
         $("managerNav")
             .classList
             .add("hidden");
 
-
-        showPage(
-            "managerLogin"
-        );
+        showPage("managerLogin");
     }
 }
 
 
-/* CONTAGEM */
+/* =========================
+   CONTAGEM
+========================= */
 
 async function loadCount() {
 
@@ -971,27 +811,24 @@ async function loadCount() {
                 "/api/manager/members/count"
             );
 
-
-        $("memberCount")
-            .textContent =
+        $("memberCount").textContent =
             data.count ?? 0;
 
+    } catch {
 
-    } catch (error) {
-
-        $("memberCount")
-            .textContent = "?";
+        $("memberCount").textContent = "?";
     }
 }
 
 
-/* LISTA DE MEMBROS */
+/* =========================
+   MEMBROS
+========================= */
 
 async function loadMembers() {
 
     const list =
         $("membersList");
-
 
     try {
 
@@ -1000,10 +837,8 @@ async function loadMembers() {
                 "/api/manager/members"
             );
 
-
         const members =
             data.members || [];
-
 
         if (!members.length) {
 
@@ -1013,93 +848,72 @@ async function loadMembers() {
             return;
         }
 
-
         list.innerHTML = "";
 
+        members.forEach(member => {
 
-        members.forEach(
-            function(member) {
+            const item =
+                document.createElement("div");
 
-                const item =
-                    document.createElement(
-                        "div"
-                    );
-
-                item.className =
-                    "member-item";
+            item.className =
+                "member-item";
 
 
-                const info =
-                    document.createElement(
-                        "div"
-                    );
+            const info =
+                document.createElement("div");
 
 
-                const name =
-                    document.createElement(
-                        "strong"
-                    );
+            const name =
+                document.createElement("strong");
 
-                name.textContent =
-                    member.name;
+            name.textContent =
+                member.name;
 
 
-                const user =
-                    document.createElement(
-                        "div"
-                    );
+            const user =
+                document.createElement("div");
 
-                user.className =
-                    "small";
+            user.className =
+                "small";
 
-                user.textContent =
-                    "@" + member.user;
+            user.textContent =
+                "@" + member.user;
 
 
-                info.append(
-                    name,
-                    user
-                );
+            info.append(
+                name,
+                user
+            );
 
 
-                const deleteButton =
-                    document.createElement(
-                        "button"
-                    );
+            const deleteButton =
+                document.createElement("button");
 
-                deleteButton.className =
-                    "btn danger";
+            deleteButton.className =
+                "btn danger";
 
-                deleteButton.type =
-                    "button";
+            deleteButton.type =
+                "button";
 
-                deleteButton.textContent =
-                    "Excluir";
+            deleteButton.textContent =
+                "Excluir";
 
 
-                deleteButton.addEventListener(
-                    "click",
-                    function() {
-
-                        deleteMember(
-                            member.id
-                        );
-                    }
-                );
+            deleteButton.addEventListener(
+                "click",
+                () => deleteMember(member.id)
+            );
 
 
-                item.append(
-                    info,
-                    deleteButton
-                );
+            item.append(
+                info,
+                deleteButton
+            );
 
+            list.appendChild(item);
+        });
 
-                list.appendChild(item);
-            }
-        );
-
-
-    } catch (error) {
+    } catch {
 
         list.innerHTML =
             "<p>Não foi possível carregar os membros.</p>";
@@ -1107,18 +921,15 @@ async function loadMembers() {
 }
 
 
-/* EXCLUIR MEMBRO */
+/* =========================
+   EXCLUIR MEMBRO
+========================= */
 
 async function deleteMember(id) {
 
-    if (
-        !confirm(
-            "Excluir este membro?"
-        )
-    ) {
+    if (!confirm("Excluir este membro?")) {
         return;
     }
-
 
     try {
 
@@ -1130,41 +941,38 @@ async function deleteMember(id) {
             }
         );
 
-
         await loadCount();
-
         await loadMembers();
-
 
     } catch (error) {
 
-        alert(
-            error.message
-        );
+        alert(error.message);
     }
 }
 
 
-/* ATUALIZAR */
+/* =========================
+   ATUALIZAR
+========================= */
 
 $("refreshMembers").addEventListener(
     "click",
-    async function() {
+    async () => {
 
         await loadCount();
-
         await loadMembers();
-
         await loadSite();
     }
 );
 
 
-/* LOGOUT MANAGER */
+/* =========================
+   LOGOUT MANAGER
+========================= */
 
 $("managerLogout").addEventListener(
     "click",
-    async function() {
+    async () => {
 
         try {
 
@@ -1175,24 +983,24 @@ $("managerLogout").addEventListener(
                 }
             );
 
-        } catch (error) {}
-
+        } catch {}
 
         $("managerNav")
             .classList
             .add("hidden");
-
 
         showPage("home");
     }
 );
 
 
-/* ALTERAR SITE */
+/* =========================
+   ALTERAR SITE
+========================= */
 
 $("siteForm").addEventListener(
     "submit",
-    async function(event) {
+    async event => {
 
         event.preventDefault();
 
@@ -1201,18 +1009,15 @@ $("siteForm").addEventListener(
 
         clearMsg(msg);
 
-
         const title =
             $("newTitle")
             .value
             .trim();
 
-
         const description =
             $("newDescription")
             .value
             .trim();
-
 
         try {
 
@@ -1223,8 +1028,98 @@ $("siteForm").addEventListener(
                         method: "PUT",
 
                         body: JSON.stringify({
+                            title,
+                            description
+                        })
+                    }
+                );
 
-                            title: title,
+            applySite(
+                data.site
+            );
 
-                            description:
-  
+            showMsg(
+                msg,
+                data.message ||
+                "Configurações alteradas."
+            );
+
+        } catch (error) {
+
+            showMsg(
+                msg,
+                error.message,
+                true
+            );
+        }
+    }
+);
+
+
+/* =========================
+   CARREGAR SITE
+========================= */
+
+async function loadSite() {
+
+    try {
+
+        const site =
+            await api("/api/site");
+
+        applySite(site);
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar configurações:",
+            error
+        );
+    }
+}
+
+
+/* =========================
+   APLICAR CONFIGURAÇÕES
+========================= */
+
+function applySite(site) {
+
+    if (!site) return;
+
+    if (site.title) {
+
+        $("siteTitle").textContent =
+            site.title;
+
+        $("homeTitle").textContent =
+            site.title;
+
+        document.title =
+            site.title;
+    }
+
+    if (site.description) {
+
+        $("homeDescription").textContent =
+            site.description;
+    }
+
+    $("newTitle").value =
+        site.title || "";
+
+    $("newDescription").value =
+        site.description || "";
+}
+
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+loadSite();
+
+loadManager();
+
+</script></body>
+</html>
