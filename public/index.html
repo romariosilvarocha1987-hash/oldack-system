@@ -1,923 +1,1230 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TESTE 124</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLDACK SYSTEM</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        body {
-            min-height: 100vh;
-            background: #080808;
-            color: #fff;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0f14;
+    color: white;
+    min-height: 100vh;
+}
 
-        button,
-        input,
-        textarea {
-            font: inherit;
-        }
+button,
+input {
+    font: inherit;
+}
 
-        button {
-            cursor: pointer;
-        }
+button {
+    cursor: pointer;
+}
 
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding: 80px 20px 50px;
-        }
+header {
+    height: 64px;
+    background: #111821;
+    border-bottom: 1px solid #26313d;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-        .page.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.menu-btn {
+    background: none;
+    border: 0;
+    color: white;
+    font-size: 28px;
+    width: 42px;
+}
 
-        .container {
-            width: 100%;
-            max-width: 900px;
-            margin: auto;
-        }
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
 
-        .card {
-            width: 100%;
-            max-width: 450px;
-            margin: auto;
-            padding: 30px;
-            border: 1px solid #333;
-            border-radius: 18px;
-            background: #151515;
-            box-shadow: 0 15px 45px rgba(0,0,0,.45);
-        }
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 35px 18px;
+}
 
-        .wide-card {
-            max-width: 900px;
-        }
+.page {
+    display: none;
+}
 
-        h1,
-        h2,
-        h3 {
-            margin-bottom: 15px;
-        }
+.page.active {
+    display: block;
+}
 
-        .center {
-            text-align: center;
-        }
+.card {
+    background: #121a23;
+    border: 1px solid #26313d;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 30px #0004;
+}
 
-        .muted {
-            color: #999;
-        }
+h1 {
+    font-size: 34px;
+    margin-bottom: 12px;
+}
 
-        .input,
-        .textarea {
-            display: block;
-            width: 100%;
-            margin: 9px 0;
-            padding: 14px;
-            border: 1px solid #444;
-            border-radius: 10px;
-            outline: none;
-            background: #0c0c0c;
-            color: #fff;
-        }
+h2 {
+    margin-bottom: 14px;
+}
 
-        .textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
+p {
+    color: #b9c3ce;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
 
-        .input:focus,
-        .textarea:focus {
-            border-color: #888;
-        }
+.btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    background: #2f80ed;
+    color: white;
+    font-weight: 700;
+    margin: 5px 3px;
+}
 
-        .btn {
-            width: 100%;
-            margin-top: 10px;
-            padding: 14px;
-            border: 0;
-            border-radius: 10px;
-            background: #fff;
-            color: #000;
-            font-weight: bold;
-        }
+.btn.secondary {
+    background: #26313d;
+}
 
-        .btn:hover {
-            opacity: .85;
-        }
+.btn.danger {
+    background: #c0392b;
+}
 
-        .btn-secondary {
-            background: #222;
-            color: #fff;
-            border: 1px solid #444;
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0 12px;
+    background: #0b1118;
+    border: 1px solid #33404d;
+    border-radius: 9px;
+    color: white;
+    outline: none;
+}
 
-        .btn-danger {
-            background: #7f1d1d;
-            color: #fff;
-        }
+input:focus {
+    border-color: #2f80ed;
+}
 
-        .btn-small {
-            width: auto;
-            padding: 9px 12px;
-            margin: 0;
-        }
+.msg {
+    padding: 10px;
+    border-radius: 9px;
+    margin: 10px 0;
+    display: none;
+}
 
-        .message {
-            min-height: 24px;
-            margin-top: 12px;
-            text-align: center;
-        }
+.msg.show {
+    display: block;
+    background: #182b20;
+    color: #9ff0b1;
+}
 
-        /* MENU */
+.msg.error {
+    display: block;
+    background: #351b1b;
+    color: #ffaaa3;
+}
 
-        #menuButton {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 2000;
-            width: 48px;
-            height: 48px;
-            border: 1px solid #444;
-            border-radius: 12px;
-            background: #111;
-            color: #fff;
-            font-size: 24px;
-        }
+.side {
+    position: fixed;
+    left: -310px;
+    top: 0;
+    width: 290px;
+    height: 100%;
+    background: #101720;
+    border-right: 1px solid #293541;
+    z-index: 20;
+    padding: 20px;
+    transition: .25s;
+}
 
-        #sideMenu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1999;
-            width: 300px;
-            max-width: 85%;
-            height: 100vh;
-            padding: 75px 20px 20px;
-            border-right: 1px solid #333;
-            background: #111;
-            transform: translateX(-105%);
-            transition: transform .25s ease;
-        }
+.side.open {
+    left: 0;
+}
 
-        #sideMenu.open {
-            transform: translateX(0);
-        }
+.close {
+    float: right;
+    background: none;
+    border: 0;
+    color: white;
+    font-size: 25px;
+}
 
-        #closeMenu {
-            position: absolute;
-            top: 17px;
-            right: 17px;
-            border: 0;
-            background: transparent;
-            color: #fff;
-            font-size: 28px;
-        }
+.side h2 {
+    margin-top: 30px;
+}
 
-        .menu-title {
-            margin-bottom: 25px;
-            font-size: 22px;
-            font-weight: bold;
-        }
+.nav {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 13px;
+    margin: 7px 0;
+    background: #18222d;
+    border: 0;
+    color: white;
+    border-radius: 9px;
+}
 
-        .menu-label {
-            margin: 20px 0 8px;
-            color: #888;
-            font-size: 12px;
-            text-transform: uppercase;
-        }
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #0008;
+    z-index: 15;
+}
 
-        .menu-link {
-            display: block;
-            width: 100%;
-            margin: 7px 0;
-            padding: 13px;
-            border: 1px solid #333;
-            border-radius: 10px;
-            background: #1b1b1b;
-            color: #fff;
-            text-align: left;
-        }
+.overlay.show {
+    display: block;
+}
 
-        .menu-link:hover {
-            background: #292929;
-        }
+.member-item {
+    background: #0d141c;
+    border: 1px solid #27333f;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
 
-        /* HOME */
+.small {
+    font-size: 13px;
+    color: #8e9aa7;
+}
 
-        .hero {
-            text-align: center;
-        }
+.badge {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #1d3654;
+    color: #8fc2ff;
+}
 
-        .hero h1 {
-            font-size: clamp(45px, 10vw, 85px);
-            letter-spacing: 3px;
-        }
+.version {
+    position: fixed;
+    right: 10px;
+    bottom: 8px;
+    color: #66727e;
+    font-size: 12px;
+}
 
-        .hero p {
-            color: #aaa;
-            font-size: 18px;
-        }
+.hidden {
+    display: none !important;
+}
 
-        /* MANAGER */
+@media(max-width:600px) {
+    h1 {
+        font-size: 28px;
+    }
 
-        .dashboard {
-            width: 100%;
-            max-width: 950px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .stat {
-            padding: 22px;
-            border: 1px solid #333;
-            border-radius: 15px;
-            background: #151515;
-        }
-
-        .stat-number {
-            margin-top: 8px;
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .members-list {
-            margin-top: 15px;
-        }
-
-        .member-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-top: 10px;
-            padding: 15px;
-            border: 1px solid #333;
-            border-radius: 12px;
-            background: #101010;
-        }
-
-        .member-info {
-            min-width: 0;
-        }
-
-        .member-name {
-            font-weight: bold;
-        }
-
-        .member-user {
-            margin-top: 4px;
-            color: #999;
-            font-size: 13px;
-        }
-
-        /* SUCCESS */
-
-        .success-icon {
-            margin-bottom: 15px;
-            font-size: 65px;
-        }
-
-        /* VERSION */
-
-        .site-version {
-            position: fixed;
-            right: 12px;
-            bottom: 10px;
-            z-index: 1500;
-            color: #777;
-            font-size: 12px;
-            pointer-events: none;
-        }
-
-        @media (max-width: 600px) {
-            .card {
-                padding: 22px;
-            }
-
-            .member-item {
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .btn-small {
-                width: 100%;
-            }
-        }
-    </style>
+    .member-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <button id="menuButton" type="button">☰</button>
+<header>
+    <button class="menu-btn" id="menuBtn" type="button">☰</button>
+    <div class="logo" id="siteTitle">OLDACK SYSTEM</div>
+</header>
 
-    <nav id="sideMenu">
-        <button id="closeMenu" type="button">×</button>
+<div class="overlay" id="overlay"></div>
 
-        <div class="menu-title">OLDACK SYSTEM</div>
+<aside class="side" id="side">
 
-        <div class="menu-label">Principal</div>
+    <button class="close" id="closeMenu" type="button">×</button>
 
-        <button class="menu-link" type="button" data-page="home">
-            🏠 Início
+    <h2>Menu</h2>
+
+    <button class="nav" data-page="home" type="button">
+        🏠 Início
+    </button>
+
+    <button class="nav" data-page="register" type="button">
+        📝 Cadastrar membro
+    </button>
+
+    <button class="nav" data-page="memberLogin" type="button">
+        👤 Entrar como membro
+    </button>
+
+    <button class="nav" data-page="managerLogin" type="button">
+        🔐 Entrar como manager
+    </button>
+
+    <button
+        class="nav hidden"
+        id="managerNav"
+        data-page="manager"
+        type="button">
+        ⚙️ Painel do manager
+    </button>
+
+</aside>
+
+<main>
+
+<!-- INÍCIO -->
+
+<section id="home" class="page active">
+
+    <div class="card">
+
+        <h1 id="homeTitle">
+            OLDACK SYSTEM
+        </h1>
+
+        <p id="homeDescription">
+            Sistema de membros e gerenciamento.
+        </p>
+
+        <button
+            class="btn"
+            data-page="register"
+            type="button">
+            Cadastrar membro
         </button>
 
-        <div class="menu-label">Membro</div>
-
-        <button class="menu-link" type="button" data-page="memberRegister">
-            📝 Cadastro
+        <button
+            class="btn secondary"
+            data-page="memberLogin"
+            type="button">
+            Entrar
         </button>
 
-        <button class="menu-link" type="button" data-page="memberLogin">
-            👤 Login do membro
-        </button>
+    </div>
 
-        <div class="menu-label">Manager</div>
-
-        <button class="menu-link" type="button" data-page="managerLogin">
-            🔐 Login Manager
-        </button>
-    </nav>
+</section>
 
 
-    <!-- HOME -->
+<!-- CADASTRO -->
 
-    <section id="home" class="page active">
-        <div class="hero">
-            <h1>TESTE 124</h1>
-            <p>Sistema online</p>
-        </div>
-    </section>
+<section id="register" class="page">
 
+    <div class="card">
 
-    <!-- CADASTRO -->
+        <h2>Cadastrar membro</h2>
 
-    <section id="memberRegister" class="page">
-        <div class="card">
-
-            <h2 class="center">📝 Cadastro de membro</h2>
+        <form id="registerForm">
 
             <input
-                id="registerName"
-                class="input"
-                type="text"
-                maxlength="80"
-                placeholder="Nome">
+                id="regName"
+                placeholder="Nome"
+                autocomplete="name"
+                required>
 
             <input
-                id="registerUser"
-                class="input"
-                type="text"
-                maxlength="40"
-                placeholder="Login">
+                id="regUser"
+                placeholder="Usuário"
+                autocomplete="username"
+                required>
 
             <input
-                id="registerPass"
-                class="input"
+                id="regPass"
                 type="password"
-                maxlength="100"
-                placeholder="Senha">
+                placeholder="Senha"
+                autocomplete="new-password"
+                required>
 
             <button
-                id="registerButton"
                 class="btn"
-                type="button">
+                type="submit">
                 Cadastrar
             </button>
 
-            <button
-                class="btn btn-secondary"
-                type="button"
-                data-page="memberLogin">
-                Já tenho uma conta
-            </button>
+        </form>
 
-            <div id="registerMessage" class="message"></div>
+        <div id="registerMsg" class="msg"></div>
 
-        </div>
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- LOGIN MEMBRO -->
+<!-- LOGIN MEMBRO -->
 
-    <section id="memberLogin" class="page">
-        <div class="card">
+<section id="memberLogin" class="page">
 
-            <h2 class="center">👤 Login do membro</h2>
+    <div class="card">
 
-            <input
-                id="memberUser"
-                class="input"
-                type="text"
-                placeholder="Login">
+        <h2>Entrar como membro</h2>
+
+        <form id="memberLoginForm">
 
             <input
-                id="memberPass"
-                class="input"
+                id="loginUser"
+                placeholder="Usuário"
+                autocomplete="username"
+                required>
+
+            <input
+                id="loginPass"
                 type="password"
-                placeholder="Senha">
+                placeholder="Senha"
+                autocomplete="current-password"
+                required>
 
             <button
-                id="memberLoginButton"
                 class="btn"
-                type="button">
+                type="submit">
                 Entrar
             </button>
 
-            <button
-                class="btn btn-secondary"
-                type="button"
-                data-page="memberRegister">
-                Criar conta
-            </button>
+        </form>
 
-            <div id="memberMessage" class="message"></div>
+        <div id="memberLoginMsg" class="msg"></div>
 
-        </div>
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- SUCESSO MEMBRO -->
+<!-- MEMBRO LOGADO -->
 
-    <section id="memberSuccess" class="page">
-        <div class="card center">
+<section id="memberSuccess" class="page">
 
-            <div class="success-icon">✅</div>
+    <div class="card">
 
-            <h2>Teste concluído!</h2>
+        <h1>
+            Teste concluído ✅
+        </h1>
 
-            <p class="muted">
-                Login realizado com sucesso.
-            </p>
+        <p id="welcomeMember">
+            Você entrou como membro.
+        </p>
 
-            <button
-                id="memberLogoutButton"
-                class="btn btn-secondary"
-                type="button">
-                Sair
-            </button>
+        <button
+            class="btn secondary"
+            id="memberLogout"
+            type="button">
+            Sair
+        </button>
 
-            <button
-                class="btn"
-                type="button"
-                data-page="home">
-                Início
-            </button>
+    </div>
 
-        </div>
-    </section>
+</section>
 
 
-    <!-- LOGIN MANAGER -->
+<!-- LOGIN MANAGER -->
 
-    <section id="managerLogin" class="page">
-        <div class="card">
+<section id="managerLogin" class="page">
 
-            <h2 class="center">🔐 Login Manager</h2>
+    <div class="card">
+
+        <h2>Login do manager</h2>
+
+        <form id="managerLoginForm">
 
             <input
                 id="managerUser"
-                class="input"
-                type="text"
+                placeholder="Usuário do manager"
                 autocomplete="username"
-                placeholder="Login">
+                required>
 
             <input
                 id="managerPass"
-                class="input"
                 type="password"
+                placeholder="Senha do manager"
                 autocomplete="current-password"
-                placeholder="Senha">
+                required>
 
             <button
-                id="managerLoginButton"
                 class="btn"
-                type="button">
+                type="submit">
                 Entrar
             </button>
 
-            <div id="managerMessage" class="message"></div>
+        </form>
 
+        <div id="managerLoginMsg" class="msg"></div>
+
+    </div>
+
+</section>
+
+
+<!-- PAINEL MANAGER -->
+
+<section id="manager" class="page">
+
+    <div class="card">
+
+        <h2>Painel do Manager</h2>
+
+        <p>
+            Área de gerenciamento do sistema.
+        </p>
+
+        <span class="badge">
+            Membros:
+            <strong id="memberCount">0</strong>
+        </span>
+
+        <button
+            class="btn secondary"
+            id="refreshMembers"
+            type="button">
+            Atualizar
+        </button>
+
+        <button
+            class="btn danger"
+            id="managerLogout"
+            type="button">
+            Sair
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Informações do site</h2>
+
+        <form id="siteForm">
+
+            <input
+                id="newTitle"
+                placeholder="Título do site"
+                required>
+
+            <input
+                id="newDescription"
+                placeholder="Descrição"
+                required>
+
+            <button
+                class="btn"
+                type="submit">
+                Salvar alterações
+            </button>
+
+        </form>
+
+        <div id="siteMsg" class="msg"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Membros cadastrados
+        </h2>
+
+        <div id="membersList">
+            <p>Nenhum membro carregado.</p>
         </div>
-    </section>
 
+    </div>
 
-    <!-- PAINEL MANAGER -->
+</section>
 
-    <section id="managerPanel" class="page">
-        <div class="dashboard">
+</main>
 
-            <div class="card wide-card">
+<div class="version">
+    v2.0
+</div>
 
-                <h2>⚙️ Painel do Manager</h2>
 
-                <p class="muted">
-                    Área administrativa
-                </p>
+<script>
 
-            </div>
+"use strict";
 
 
-            <div class="stats">
+/* FUNÇÃO PARA PEGAR ELEMENTOS */
 
-                <div class="stat">
-                    <div>👥 Membros</div>
+const $ = id => document.getElementById(id);
 
-                    <div
-                        id="memberCount"
-                        class="stat-number">
-                        0
-                    </div>
-                </div>
 
-                <div class="stat">
-                    <div>🌐 Sistema</div>
+/* NAVEGAÇÃO */
 
-                    <div class="stat-number">
-                        ONLINE
-                    </div>
-                </div>
+function showPage(page) {
 
-                <div class="stat">
-                    <div>📌 Versão</div>
+    document
+        .querySelectorAll(".page")
+        .forEach(p => {
+            p.classList.remove("active");
+        });
 
-                    <div class="stat-number">
-                        v2.0
-                    </div>
-                </div>
+    const target = $(page);
 
-            </div>
+    if (target) {
+        target.classList.add("active");
+    }
 
+    closeMenu();
 
-            <!-- CONFIGURAÇÃO DO SITE -->
+    window.scrollTo(0, 0);
+}
 
-            <div class="card wide-card">
 
-                <h3>📝 Configuração do site</h3>
+/* MENSAGENS */
 
-                <input
-                    id="siteTitle"
-                    class="input"
-                    type="text"
-                    maxlength="120"
-                    placeholder="Título">
+function showMsg(element, text, error = false) {
 
-                <textarea
-                    id="siteDescription"
-                    class="textarea"
-                    maxlength="500"
-                    placeholder="Descrição"></textarea>
+    element.textContent = text;
 
-                <button
-                    id="saveSiteButton"
-                    class="btn"
-                    type="button">
-                    Salvar alterações
-                </button>
+    element.className =
+        "msg show" +
+        (error ? " error" : "");
+}
 
-                <div
-                    id="siteMessage"
-                    class="message">
-                </div>
 
-            </div>
+function clearMsg(element) {
 
+    element.textContent = "";
 
-            <!-- MEMBROS -->
+    element.className = "msg";
+}
 
-            <div class="card wide-card" style="margin-top:15px;">
 
-                <h3>👥 Membros cadastrados</h3>
+/* MENU */
 
-                <button
-                    id="refreshMembersButton"
-                    class="btn btn-secondary"
-                    type="button">
-                    🔄 Atualizar lista
-                </button>
+function openMenu() {
 
-                <div
-                    id="membersList"
-                    class="members-list">
-                </div>
+    $("side").classList.add("open");
 
-                <div
-                    id="membersMessage"
-                    class="message">
-                </div>
+    $("overlay").classList.add("show");
+}
 
-            </div>
 
+function closeMenu() {
 
-            <!-- LOGOUT -->
+    $("side").classList.remove("open");
 
-            <div class="card wide-card" style="margin-top:15px;">
+    $("overlay").classList.remove("show");
+}
 
-                <button
-                    id="managerLogoutButton"
-                    class="btn btn-danger"
-                    type="button">
-                    🚪 Sair do Manager
-                </button>
 
-            </div>
+$("menuBtn").addEventListener(
+    "click",
+    openMenu
+);
 
-        </div>
-    </section>
 
+$("closeMenu").addEventListener(
+    "click",
+    closeMenu
+);
 
-    <div class="site-version">v2.0</div>
 
+$("overlay").addEventListener(
+    "click",
+    closeMenu
+);
 
-    <script>
-        "use strict";
 
+/* BOTÕES DE NAVEGAÇÃO */
 
-        /* =========================
-           ELEMENTOS
-        ========================= */
+document.addEventListener(
+    "click",
+    function(event) {
 
-        const $ = id => document.getElementById(id);
+        const button =
+            event.target.closest("[data-page]");
 
+        if (!button) return;
 
-        /* =========================
-           MENSAGENS
-        ========================= */
+        showPage(
+            button.dataset.page
+        );
+    }
+);
 
-        function message(element, text, color) {
-            if (!element) return;
 
-            element.textContent = text;
-            element.style.color = color || "#fff";
-        }
+/* API */
 
+async function api(url, options = {}) {
 
-        /* =========================
-           NAVEGAÇÃO
-        ========================= */
-
-        function showPage(pageId) {
-
-            const pages =
-                document.querySelectorAll(".page");
-
-            pages.forEach(page => {
-                page.classList.remove("active");
-            });
-
-            const page = $(pageId);
-
-            if (!page) {
-                console.error(
-                    "Página não encontrada:",
-                    pageId
-                );
-                return;
-            }
-
-            page.classList.add("active");
-
-            closeMenu();
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            if (pageId === "managerPanel") {
-                loadManagerData();
-            }
-        }
-
-
-        /* =========================
-           MENU
-        ========================= */
-
-        function openMenu() {
-            $("sideMenu").classList.add("open");
-        }
-
-        function closeMenu() {
-            $("sideMenu").classList.remove("open");
-        }
-
-
-        /* =========================
-           API JSON
-        ========================= */
-
-        async function api(url, options = {}) {
-
-            const response = await fetch(url, {
-                credentials: "include",
+    const response =
+        await fetch(
+            url,
+            {
+                credentials: "same-origin",
                 ...options,
+
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type":
+                        "application/json",
+
                     ...(options.headers || {})
                 }
-            });
-
-            let data = {};
-
-            try {
-                data = await response.json();
-            } catch {
-                data = {};
             }
-
-            if (!response.ok) {
-                throw new Error(
-                    data.message ||
-                    `Erro HTTP ${response.status}`
-                );
-            }
-
-            return data;
-        }
+        );
 
 
-        /* =========================
-           CADASTRO
-        ========================= */
+    let data = {};
 
-        async function registerMember() {
+    try {
 
-            const name =
-                $("registerName").value.trim();
+        data =
+            await response.json();
 
-            const user =
-                $("registerUser").value.trim();
+    } catch (error) {
 
-            const pass =
-                $("registerPass").value;
-
-            const msg =
-                $("registerMessage");
+        data = {};
+    }
 
 
-            if (!name || !user || !pass) {
+    if (!response.ok) {
 
-                message(
-                    msg,
-                    "⚠️ Preencha todos os campos.",
-                    "#f87171"
-                );
-
-                return;
-            }
+        throw new Error(
+            data.message ||
+            data.error ||
+            "Erro na solicitação."
+        );
+    }
 
 
-            message(
-                msg,
-                "⏳ Cadastrando...",
-                "#facc15"
-            );
+    return data;
+}
 
 
-            try {
+/* CADASTRO DE MEMBRO */
 
+$("registerForm").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const msg =
+            $("registerMsg");
+
+        clearMsg(msg);
+
+
+        try {
+
+            const data =
                 await api(
                     "/api/member/register",
                     {
                         method: "POST",
+
                         body: JSON.stringify({
-                            name,
-                            user,
-                            pass
+
+                            name:
+                                $("regName")
+                                .value
+                                .trim(),
+
+                            user:
+                                $("regUser")
+                                .value
+                                .trim(),
+
+                            pass:
+                                $("regPass")
+                                .value
                         })
                     }
                 );
 
 
-                message(
-                    msg,
-                    "✅ Cadastro realizado!",
-                    "#4ade80"
-                );
-
-
-                $("registerName").value = "";
-                $("registerUser").value = "";
-                $("registerPass").value = "";
-
-
-                setTimeout(
-                    () => showPage("memberLogin"),
-                    900
-                );
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                message(
-                    msg,
-                    "❌ " + error.message,
-                    "#f87171"
-                );
-            }
-        }
-
-
-        /* =========================
-           LOGIN MEMBRO
-        ========================= */
-
-        async function loginMember() {
-
-            const user =
-                $("memberUser").value.trim();
-
-            const pass =
-                $("memberPass").value;
-
-            const msg =
-                $("memberMessage");
-
-
-            if (!user || !pass) {
-
-                message(
-                    msg,
-                    "⚠️ Informe login e senha.",
-                    "#f87171"
-                );
-
-                return;
-            }
-
-
-            message(
+            showMsg(
                 msg,
-                "⏳ Entrando...",
-                "#facc15"
+                data.message ||
+                "Membro cadastrado!"
             );
 
 
-            try {
+            event.target.reset();
 
+
+        } catch (error) {
+
+            showMsg(
+                msg,
+                error.message,
+                true
+            );
+        }
+    }
+);
+
+
+/* LOGIN MEMBRO */
+
+$("memberLoginForm").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const msg =
+            $("memberLoginMsg");
+
+        clearMsg(msg);
+
+
+        try {
+
+            const data =
                 await api(
                     "/api/member/login",
                     {
                         method: "POST",
+
                         body: JSON.stringify({
-                            user,
-                            pass
+
+                            user:
+                                $("loginUser")
+                                .value
+                                .trim(),
+
+                            pass:
+                                $("loginPass")
+                                .value
                         })
                     }
                 );
 
 
-                message(
-                    msg,
-                    "✅ Login realizado!",
-                    "#4ade80"
-                );
+            $("welcomeMember").textContent =
+                "Bem-vindo, " +
+                (
+                    data.member?.name ||
+                    "membro"
+                ) +
+                "!";
 
 
-                $("memberPass").value = "";
+            event.target.reset();
 
 
-                setTimeout(
-                    () => showPage("memberSuccess"),
-                    500
-                );
+            showPage(
+                "memberSuccess"
+            );
 
 
-            } catch (error) {
+        } catch (error) {
 
-                console.error(error);
+            showMsg(
+                msg,
+                error.message,
+                true
+            );
+        }
+    }
+);
 
-                message(
-                    msg,
-                    "❌ " + error.message,
-                    "#f87171"
-                );
-            }
+
+/* LOGOUT MEMBRO */
+
+$("memberLogout").addEventListener(
+    "click",
+    async function() {
+
+        try {
+
+            await api(
+                "/api/member/logout",
+                {
+                    method: "POST"
+                }
+            );
+
+        } catch (error) {}
+
+
+        showPage("home");
+    }
+);
+
+
+/* LOGIN MANAGER */
+
+$("managerLoginForm").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const msg =
+            $("managerLoginMsg");
+
+        clearMsg(msg);
+
+
+        try {
+
+            await api(
+                "/api/manager/login",
+                {
+                    method: "POST",
+
+                    body: JSON.stringify({
+
+                        user:
+                            $("managerUser")
+                            .value
+                            .trim(),
+
+                        pass:
+                            $("managerPass")
+                            .value
+                    })
+                }
+            );
+
+
+            event.target.reset();
+
+
+            $("managerNav")
+                .classList
+                .remove("hidden");
+
+
+            showPage("manager");
+
+
+            await loadManager();
+
+
+        } catch (error) {
+
+            showMsg(
+                msg,
+                error.message,
+                true
+            );
+        }
+    }
+);
+
+
+/* CARREGAR PAINEL */
+
+async function loadManager() {
+
+    try {
+
+        await api(
+            "/api/manager/me"
+        );
+
+
+        $("managerNav")
+            .classList
+            .remove("hidden");
+
+
+        await loadCount();
+
+        await loadMembers();
+
+        await loadSite();
+
+
+    } catch (error) {
+
+        $("managerNav")
+            .classList
+            .add("hidden");
+
+
+        showPage(
+            "managerLogin"
+        );
+    }
+}
+
+
+/* CONTAGEM */
+
+async function loadCount() {
+
+    try {
+
+        const data =
+            await api(
+                "/api/manager/members/count"
+            );
+
+
+        $("memberCount")
+            .textContent =
+            data.count ?? 0;
+
+
+    } catch (error) {
+
+        $("memberCount")
+            .textContent = "?";
+    }
+}
+
+
+/* LISTA DE MEMBROS */
+
+async function loadMembers() {
+
+    const list =
+        $("membersList");
+
+
+    try {
+
+        const data =
+            await api(
+                "/api/manager/members"
+            );
+
+
+        const members =
+            data.members || [];
+
+
+        if (!members.length) {
+
+            list.innerHTML =
+                "<p>Nenhum membro cadastrado.</p>";
+
+            return;
         }
 
 
-        /* =========================
-           LOGOUT MEMBRO
-        ========================= */
+        list.innerHTML = "";
 
-        async function logoutMember() {
 
-            try {
+        members.forEach(
+            function(member) {
 
-              
+                const item =
+                    document.createElement(
+                        "div"
+                    );
+
+                item.className =
+                    "member-item";
+
+
+                const info =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                const name =
+                    document.createElement(
+                        "strong"
+                    );
+
+                name.textContent =
+                    member.name;
+
+
+                const user =
+                    document.createElement(
+                        "div"
+                    );
+
+                user.className =
+                    "small";
+
+                user.textContent =
+                    "@" + member.user;
+
+
+                info.append(
+                    name,
+                    user
+                );
+
+
+                const deleteButton =
+                    document.createElement(
+                        "button"
+                    );
+
+                deleteButton.className =
+                    "btn danger";
+
+                deleteButton.type =
+                    "button";
+
+                deleteButton.textContent =
+                    "Excluir";
+
+
+                deleteButton.addEventListener(
+                    "click",
+                    function() {
+
+                        deleteMember(
+                            member.id
+                        );
+                    }
+                );
+
+
+                item.append(
+                    info,
+                    deleteButton
+                );
+
+
+                list.appendChild(item);
+            }
+        );
+
+
+    } catch (error) {
+
+        list.innerHTML =
+            "<p>Não foi possível carregar os membros.</p>";
+    }
+}
+
+
+/* EXCLUIR MEMBRO */
+
+async function deleteMember(id) {
+
+    if (
+        !confirm(
+            "Excluir este membro?"
+        )
+    ) {
+        return;
+    }
+
+
+    try {
+
+        await api(
+            "/api/manager/members/" +
+            encodeURIComponent(id),
+            {
+                method: "DELETE"
+            }
+        );
+
+
+        await loadCount();
+
+        await loadMembers();
+
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+    }
+}
+
+
+/* ATUALIZAR */
+
+$("refreshMembers").addEventListener(
+    "click",
+    async function() {
+
+        await loadCount();
+
+        await loadMembers();
+
+        await loadSite();
+    }
+);
+
+
+/* LOGOUT MANAGER */
+
+$("managerLogout").addEventListener(
+    "click",
+    async function() {
+
+        try {
+
+            await api(
+                "/api/manager/logout",
+                {
+                    method: "POST"
+                }
+            );
+
+        } catch (error) {}
+
+
+        $("managerNav")
+            .classList
+            .add("hidden");
+
+
+        showPage("home");
+    }
+);
+
+
+/* ALTERAR SITE */
+
+$("siteForm").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const msg =
+            $("siteMsg");
+
+        clearMsg(msg);
+
+
+        const title =
+            $("newTitle")
+            .value
+            .trim();
+
+
+        const description =
+            $("newDescription")
+            .value
+            .trim();
+
+
+        try {
+
+            const data =
+                await api(
+                    "/api/manager/site",
+                    {
+                        method: "PUT",
+
+                        body: JSON.stringify({
+
+                            title: title,
+
+                            description:
+  
